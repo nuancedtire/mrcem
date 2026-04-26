@@ -136,6 +136,15 @@ body {
   min-height: calc(100dvh - var(--topbar-h));
 }
 
+.body-sidebar-collapsed .sidebar {
+  transform: translateX(-100%);
+  margin-right: calc(-1 * var(--sidebar-w));
+}
+.body-sidebar-collapsed .main {
+  padding-left: 3rem;
+  padding-right: 3rem;
+}
+
 /* ─── Sidebar ────────────────────────────────────────────────────────────── */
 .sidebar {
   width: var(--sidebar-w);
@@ -149,6 +158,7 @@ body {
   background: var(--surface);
   scrollbar-width: thin;
   scrollbar-color: var(--border) transparent;
+  transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .sidebar-heading {
@@ -546,14 +556,12 @@ body {
 }
 .note-body a:hover { color: var(--accent-hover); }
 
-/* Tables */
+/* ── Data tables (bare <table>, no classes) ─────────────────────── */
 .note-body table {
   width: 100%;
   border-collapse: collapse;
   margin: 1.75em 0;
   font-size: 0.875rem;
-  display: block;
-  overflow-x: auto;
 }
 .note-body th {
   padding: 0.6rem 1rem;
@@ -577,7 +585,74 @@ body {
 }
 .note-body tr:last-child td { border-bottom: none; }
 .note-body tbody tr:hover { background: var(--surface-alt); }
-.note-body .table-responsive { overflow-x: auto; }
+
+/* ── Bootstrap-style tables (.table-striped, .table-bordered) ──── */
+.note-body .table-responsive {
+  overflow-x: auto;
+  margin: 1.75em 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+.note-body .table-responsive table {
+  margin: 0;
+  width: 100%;
+}
+.note-body .table-striped tbody tr:nth-child(odd) {
+  background: var(--surface-alt);
+}
+.note-body .table-striped tbody tr:nth-child(even) {
+  background: var(--surface);
+}
+.note-body .table-bordered th,
+.note-body .table-bordered td {
+  border: 1px solid var(--border);
+}
+.note-body .table-bordered th {
+  border-bottom-width: 2px;
+  border-bottom-color: var(--border-strong);
+}
+
+/* ── Image / layout tables (inside <CENTER>) ────────────────────── */
+.note-body center table,
+.note-body CENTER table {
+  width: auto;
+  display: inline-table;
+  margin: 0;
+  border: none;
+}
+.note-body center table th,
+.note-body center table td,
+.note-body CENTER table th,
+.note-body CENTER table td {
+  padding: 0.35rem 0.6rem;
+  border: none;
+  background: none;
+  font-family: 'Newsreader', serif;
+  font-variation-settings: 'opsz' 10;
+  font-size: 0.8rem;
+  color: var(--muted);
+  text-align: center;
+  vertical-align: middle;
+}
+.note-body center tbody tr:hover,
+.note-body CENTER tbody tr:hover {
+  background: none;
+}
+.note-body center table img,
+.note-body CENTER table img {
+  display: inline;
+  border-radius: var(--radius-lg);
+}
+
+/* ── Lists inside table cells ──────────────────────────────────── */
+.note-body td ul,
+.note-body td ol {
+  margin: 0;
+  padding-left: 1.2em;
+}
+.note-body td li {
+  margin-bottom: 0.15em;
+}
 
 /* Alert boxes */
 .note-body .alert {
@@ -731,6 +806,7 @@ body {
 @media (max-width: 768px) {
   :root { --sidebar-w: 280px; }
   #sidebar-toggle { display: flex; }
+  #sidebar-collapse { display: none; }
 
   .sidebar {
     position: fixed;
@@ -743,6 +819,10 @@ body {
   }
   .sidebar.open { transform: translateX(0); }
 
+  .body-sidebar-collapsed .sidebar {
+    transform: translateX(-100%);
+  }
+
   .sidebar-backdrop {
     display: none;
     position: fixed;
@@ -752,6 +832,11 @@ body {
     z-index: 89;
   }
   .sidebar-backdrop.open { display: block; }
+
+  .body-sidebar-collapsed .main {
+    padding-left: 1.25rem !important;
+    padding-right: 1.25rem !important;
+  }
 
   .main { padding: 1.75rem 1.25rem; }
 

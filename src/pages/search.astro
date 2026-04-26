@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import Search from 'astro-pagefind/components/Search';
 ---
 
 <Base title="Search">
@@ -11,29 +12,22 @@ import Base from '../layouts/Base.astro';
     </nav>
 
     <h1 class="section-title" style="margin-bottom: 0.5rem">Search Notes</h1>
-    <p class="section-subtitle" style="margin-bottom: 2rem; text-transform: none; font-size: 0.9rem; letter-spacing: 0; font-family: 'Source Serif 4', serif; color: var(--muted)">
+    <p class="section-subtitle" style="margin-bottom: 2rem; text-transform: none; font-size: 0.9rem; letter-spacing: 0; color: var(--muted)">
       Full-text search across all 1,135 notes
     </p>
 
-    <link href="/pagefind/pagefind-ui.css" rel="stylesheet" />
-    <div id="search"></div>
+    <Search id="search" uiOptions={{ showSubResults: true, resetStyles: false }} />
 
     <style>
-      .pagefind-ui {
-        --pagefind-ui-font: 'Source Serif 4', serif;
+      :root {
+        --pagefind-ui-font: 'Newsreader', serif;
         --pagefind-ui-primary: var(--accent);
         --pagefind-ui-text: var(--ink);
         --pagefind-ui-background: var(--surface);
         --pagefind-ui-border: var(--border);
         --pagefind-ui-border-radius: 6px;
+        --pagefind-ui-scale: 1;
       }
     </style>
   </div>
-
-  <script src="/pagefind/pagefind-ui.js" is:inline></script>
-  <script is:inline>
-    window.addEventListener('DOMContentLoaded', () => {
-      new PagefindUI({ element: '#search', showSubResults: true, resetStyles: false });
-    });
-  </script>
 </Base>
