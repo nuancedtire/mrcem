@@ -245,7 +245,7 @@ body {
 .main {
   flex: 1;
   min-width: 0;
-  padding: 3rem max(2rem, calc(50% - 380px)) 6rem;
+  padding: 3rem max(2rem, calc(50% - 380px));
 }
 
 /* Suppress transitions during state restoration (prevents sidebar FOUC) */
@@ -771,6 +771,7 @@ body {
   gap: 0.75rem;
   margin-top: 3.5rem;
   padding-top: 2rem;
+  padding-bottom: 4rem;
   border-top: 1px solid var(--border);
 }
 .pagination-link {
