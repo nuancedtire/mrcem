@@ -733,10 +733,12 @@ body {
 .note-body .video-wrapper {
   position: relative;
   width: 100%;
+  max-width: 100%;
+  padding-bottom: 56.25%; /* 16:9 fallback */
   aspect-ratio: 16 / 9;
   overflow: hidden;
   border-radius: var(--radius-lg);
-  margin: 1.75em 0;
+  margin: 1.75em auto;
   background: var(--surface-alt);
 }
 .note-body .video-wrapper iframe {
