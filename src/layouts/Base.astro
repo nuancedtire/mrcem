@@ -82,6 +82,7 @@ const path = Astro.url.pathname;
         <slot />
       </main>
       <slot name="toc" />
+    </div>
 
     <!-- Lightbox dialog (shared across note pages) -->
     <dialog id="lightbox" aria-label="Image lightbox">
@@ -94,37 +95,60 @@ const path = Astro.url.pathname;
     </dialog>
 
     <script is:inline>
-      // Theme + sidebar initialisation (before first paint)
+      // Theme + sidebar state restoration (before first paint)
       (function () {
+        const html = document.documentElement;
+        // Suppress transitions during state restoration to prevent FOUC
+        html.classList.add('no-transitions');
+
         const stored = localStorage.getItem('theme');
         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
         if (stored === 'dark' || (!stored && prefersDark)) {
-          document.documentElement.classList.add('dark');
+          html.classList.add('dark');
         }
         if (localStorage.getItem('sidebar-collapsed') === 'true') {
-          document.documentElement.classList.add('body-sidebar-collapsed');
+          html.classList.add('body-sidebar-collapsed');
         }
+
+        // Re-enable transitions after the next paint
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            html.classList.remove('no-transitions');
+          });
+        });
       })();
     </script>
 
     <script>
-      function applyTheme() {
-        const isDark = document.documentElement.classList.contains('dark');
+      function applyPersistedState() {
+        const html = document.documentElement;
         const sun = document.getElementById('icon-sun');
         const moon = document.getElementById('icon-moon');
+
+        // Theme
+        const isDark = html.classList.contains('dark');
         if (sun && moon) {
           sun.style.display = isDark ? 'none' : '';
           moon.style.display = isDark ? '' : 'none';
         }
+
+        // Sidebar collapse icon
+        const iconOpen = document.getElementById('sb-icon-open');
+        const iconClosed = document.getElementById('sb-icon-closed');
+        const collapsed = localStorage.getItem('sidebar-collapsed') === 'true';
+        if (iconOpen && iconClosed) {
+          iconOpen.style.display = collapsed ? 'none' : '';
+          iconClosed.style.display = collapsed ? '' : 'none';
+        }
       }
 
       function initThemeToggle() {
-        applyTheme();
+        applyPersistedState();
         const btn = document.getElementById('theme-toggle');
         btn?.addEventListener('click', () => {
           document.documentElement.classList.toggle('dark');
           localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
-          applyTheme();
+          applyPersistedState();
         });
       }
 
@@ -153,8 +177,6 @@ const path = Astro.url.pathname;
       function initSidebarCollapse() {
         const body = document.documentElement;
         const btn = document.getElementById('sidebar-collapse');
-        const iconOpen = document.getElementById('sb-icon-open');
-        const iconClosed = document.getElementById('sb-icon-closed');
         if (!btn) return;
 
         const mql = window.matchMedia('(max-width: 768px)');
@@ -163,17 +185,14 @@ const path = Astro.url.pathname;
           const collapsed = localStorage.getItem('sidebar-collapsed') === 'true';
           if (collapsed && !mql.matches) {
             body.classList.add('body-sidebar-collapsed');
-            if (iconOpen) iconOpen.style.display = 'none';
-            if (iconClosed) iconClosed.style.display = '';
             btn.setAttribute('aria-label', 'Expand sidebar');
             btn.setAttribute('aria-expanded', 'false');
           } else {
             body.classList.remove('body-sidebar-collapsed');
-            if (iconOpen) iconOpen.style.display = '';
-            if (iconClosed) iconClosed.style.display = 'none';
             btn.setAttribute('aria-label', 'Collapse sidebar');
             btn.setAttribute('aria-expanded', 'true');
           }
+          applyPersistedState();
         }
 
         sync();
@@ -187,14 +206,14 @@ const path = Astro.url.pathname;
       }
 
       function initLightbox() {
-        const dialog = document.getElementById('lightbox') as HTMLDialogElement | null;
-        const img = document.getElementById('lb-img') as HTMLImageElement | null;
+        const dialog = document.getElementById('lightbox');
+        const img = document.getElementById('lb-img');
         if (!dialog || !img) return;
 
         document.querySelectorAll('a[data-fancybox], a.fancybox').forEach(a => {
           a.addEventListener('click', e => {
             e.preventDefault();
-            const src = (a as HTMLAnchorElement).href;
+            const src = a.href;
             img.src = src;
             dialog.showModal();
           });
@@ -228,8 +247,32 @@ const path = Astro.url.pathname;
       // Run on initial load and after every Astro page transition
       document.addEventListener('astro:page-load', init);
 
-      // Apply theme immediately after DOM swap to prevent flash
-      document.addEventListener('astro:after-swap', applyTheme);
+      // Restore persisted state immediately after DOM swap (suppress transitions to avoid FOUC)
+      document.addEventListener('astro:after-swap', () => {
+        const html = document.documentElement;
+        html.classList.add('no-transitions');
+
+        const stored = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (stored === 'dark' || (!stored && prefersDark)) {
+          html.classList.add('dark');
+        } else {
+          html.classList.remove('dark');
+        }
+        if (localStorage.getItem('sidebar-collapsed') === 'true') {
+          html.classList.add('body-sidebar-collapsed');
+        } else {
+          html.classList.remove('body-sidebar-collapsed');
+        }
+
+        applyPersistedState();
+
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            html.classList.remove('no-transitions');
+          });
+        });
+      });
     </script>
   </body>
 </html>

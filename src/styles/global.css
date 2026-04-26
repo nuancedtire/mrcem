@@ -245,7 +245,12 @@ body {
 .main {
   flex: 1;
   min-width: 0;
-  padding: 3rem max(2rem, calc(50% - 380px));
+  padding: 3rem max(2rem, calc(50% - 380px)) 6rem;
+}
+
+/* Suppress transitions during state restoration (prevents sidebar FOUC) */
+.no-transitions .sidebar {
+  transition: none !important;
 }
 
 /* ─── Breadcrumb ─────────────────────────────────────────────────────────── */
