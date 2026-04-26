@@ -3,37 +3,42 @@ import Base from '../layouts/Base.astro';
 import { getCategories } from '../data/notes';
 
 const categories = getCategories();
+const totalNotes = categories.reduce((s, c) => s + c.count, 0);
 
 const catDescriptions: Record<string, string> = {
-  'anatomy': 'Surface anatomy, regional structures, and applied surgical landmarks.',
-  'physiology': 'Cellular, cardiovascular, respiratory, renal, and endocrine function.',
-  'pharmacology': 'Drug mechanisms, interactions, and emergency pharmacology.',
-  'microbiology': 'Bacteria, viruses, fungi, parasites, and infection management.',
-  'pathology': 'Disease processes, pathophysiology, and clinical presentations.',
-  'evidenced-based-medicine': 'Research methodology, statistics, and clinical guidelines.',
+  'anatomy': 'Regional structures, surface landmarks, and applied surgical anatomy',
+  'physiology': 'Cellular, cardiovascular, respiratory, renal, and endocrine function',
+  'pharmacology': 'Drug mechanisms, dosing, interactions, and emergency protocols',
+  'microbiology': 'Bacteria, viruses, fungi, parasites, and infection management',
+  'pathology': 'Disease processes, pathophysiology, and clinical presentations',
+  'evidenced-based-medicine': 'Research methodology, statistics, and clinical guidelines',
 };
 ---
 
 <Base title="MRCEM Notes">
-  <div style="animation: fadeSlideIn 0.4s ease both">
-    <h1 class="hero-title">MRCEM<br/>Study Notes</h1>
-    <p class="hero-subtitle">
-      {categories.reduce((s, c) => s + c.count, 0).toLocaleString()} notes across {categories.length} disciplines
+  <div class="home-hero">
+    <h1 class="home-title">MRCEM<br/>Study<br/>Notes</h1>
+    <p class="home-lead">
+      Emergency medicine board preparation —
+      {totalNotes.toLocaleString()} structured notes across {categories.length} core disciplines.
     </p>
-
-    <div class="category-grid">
-      {categories.map(cat => (
-        <a href={`/${cat.slug}/`} class="category-card">
-          <div class="category-card-num">0{cat.num}</div>
-          <div class="category-card-name">{cat.name}</div>
-          <div class="category-card-count">{cat.count} notes{cat.subcategories.length > 0 ? ` · ${cat.subcategories.length} sections` : ''}</div>
-          {catDescriptions[cat.slug] && (
-            <p style="margin: 0.75rem 0 0; font-size: 0.82rem; color: var(--muted); line-height: 1.5; font-family: 'Source Serif 4', serif;">
-              {catDescriptions[cat.slug]}
-            </p>
-          )}
-        </a>
-      ))}
-    </div>
   </div>
+
+  <nav class="cat-index" aria-label="Subject areas">
+    {categories.map(cat => (
+      <a href={`/${cat.slug}/`} class="cat-row" data-astro-prefetch>
+        <span class="cat-row-num">{String(cat.num).padStart(2, '0')}</span>
+        <span class="cat-row-body">
+          <span class="cat-row-name">{cat.name}</span>
+          <span class="cat-row-desc">{catDescriptions[cat.slug] ?? ''}</span>
+        </span>
+        <span class="cat-row-right">
+          <span class="cat-row-count">{cat.count} notes</span>
+          <svg class="cat-row-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </span>
+      </a>
+    ))}
+  </nav>
 </Base>

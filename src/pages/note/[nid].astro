@@ -31,11 +31,11 @@ const crumbs = [
       <a href={`/${note.categorySlug}/`}>{note.categoryName}</a>
       {note.subcategoryName && (
         <>
-          <span style="opacity:0.4; margin: 0 0.4rem">·</span>
+          <span class="note-meta-sep">·</span>
           <a href={`/${note.categorySlug}/${note.subcategorySlug}/`}>{note.subcategoryName}</a>
         </>
       )}
-      <span style="opacity:0.4; margin: 0 0.4rem">·</span>
+      <span class="note-meta-sep">·</span>
       <span data-pagefind-filter="category">{note.categoryName}</span>
     </div>
 

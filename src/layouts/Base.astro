@@ -35,7 +35,10 @@ const path = Astro.url.pathname;
         </svg>
       </button>
 
-      <a href="/" class="topbar-brand" data-astro-prefetch>MRCEM <span>Notes</span></a>
+      <a href="/" class="topbar-brand" data-astro-prefetch>
+        <span class="topbar-brand-dot" aria-hidden="true"></span>
+        MRCEM Notes
+      </a>
 
       <nav class="topbar-actions">
         <a href="/search/" class="topbar-btn" aria-label="Search">
