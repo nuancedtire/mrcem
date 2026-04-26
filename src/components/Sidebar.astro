@@ -29,7 +29,7 @@ function isActive(href: string) {
       {cat.subcategories.map(sub => (
         <a
           href={`/${cat.slug}/${sub.slug}/`}
-          class:list={['sidebar-sub', { active: currentPath === `/${cat.slug}/${sub.slug}/` }]}
+          class:list={['sidebar-sub', { active: isActive(`/${cat.slug}/${sub.slug}`) }]}
         >
           {sub.name}
           <span class="sidebar-count">{sub.count}</span>

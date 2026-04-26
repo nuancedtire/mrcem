@@ -16,14 +16,14 @@ const path = Astro.url.pathname;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" transition:name="root" transition:animate="none">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title} · MRCEM Notes</title>
     <meta name="description" content={description} />
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚕</text></svg>" />
-    <ClientRouter />
+    <ClientRouter fallback="swap" />
   </head>
   <body>
     {showProgress && <div id="progress-bar" role="progressbar" aria-label="Reading progress" />}
@@ -35,7 +35,7 @@ const path = Astro.url.pathname;
         </svg>
       </button>
 
-      <a href="/" class="topbar-brand">MRCEM <span>Notes</span></a>
+      <a href="/" class="topbar-brand" data-astro-prefetch>MRCEM <span>Notes</span></a>
 
       <nav class="topbar-actions">
         <a href="/search/" class="topbar-btn" aria-label="Search">
@@ -171,6 +171,9 @@ const path = Astro.url.pathname;
 
       // Run on initial load and after every Astro page transition
       document.addEventListener('astro:page-load', init);
+
+      // Apply theme immediately after DOM swap to prevent flash
+      document.addEventListener('astro:after-swap', applyTheme);
     </script>
   </body>
 </html>

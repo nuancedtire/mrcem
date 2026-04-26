@@ -458,11 +458,19 @@ body {
 .note-body h3 { font-size: 1.25rem; }
 .note-body h4 { font-size: 1.1rem; }
 
-.note-body ul, .note-body ol {
+.note-body ul {
   margin: 0 0 1em 0;
   padding-left: 1.5em;
+  list-style-type: disc;
+}
+.note-body ol {
+  margin: 0 0 1em 0;
+  padding-left: 1.5em;
+  list-style-type: decimal;
 }
 .note-body li { margin-bottom: 0.35em; }
+.note-body li > ul { list-style-type: circle; }
+.note-body li > ul ul { list-style-type: square; }
 .note-body li > ul, .note-body li > ol { margin-top: 0.25em; margin-bottom: 0.25em; }
 
 .note-body strong, .note-body b {
