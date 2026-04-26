@@ -726,6 +726,7 @@ body {
 /* ── Responsive video embeds ───────────────────────────────────── */
 .note-body .video-wrapper {
   position: relative;
+  width: 100%;
   padding-bottom: 56.25%; /* 16:9 */
   height: 0;
   overflow: hidden;
@@ -740,6 +741,13 @@ body {
   height: 100%;
   border: none;
   border-radius: var(--radius-lg);
+}
+/* Force parent tables to full width so videos aren't squeezed by narrow <td> */
+.note-body table:has(.video-wrapper) {
+  width: 100% !important;
+}
+.note-body table:has(.video-wrapper) td {
+  width: 100%;
 }
 .note-body a[data-fancybox]:hover, .note-body a.fancybox:hover { opacity: 0.8; }
 
