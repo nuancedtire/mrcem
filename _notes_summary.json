@@ -1,0 +1,9 @@
+{
+  "total_extracted": 1135,
+  "total_found": 1135,
+  "categories": {
+    "1": 498,
+    "2": 637
+  },
+  "output_directory": "/home/exedev/mrcem/textbook_notes"
+}
