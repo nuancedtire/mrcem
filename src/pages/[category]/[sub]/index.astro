@@ -1,0 +1,40 @@
+---
+import Base from '../../../layouts/Base.astro';
+import Breadcrumb from '../../../components/Breadcrumb.astro';
+import { getCategories, getNotesByCategory } from '../../../data/notes';
+
+export async function getStaticPaths() {
+  const paths = [];
+  for (const cat of getCategories()) {
+    for (const sub of cat.subcategories) {
+      paths.push({
+        params: { category: cat.slug, sub: sub.slug },
+        props: { cat, sub },
+      });
+    }
+  }
+  return paths;
+}
+
+const { cat, sub } = Astro.props;
+const notes = getNotesByCategory(cat.slug, sub.slug);
+---
+
+<Base title={`${sub.name} — ${cat.name}`}>
+  <Breadcrumb crumbs={[
+    { label: cat.name, href: `/${cat.slug}/` },
+    { label: sub.name },
+  ]} />
+
+  <h1 class="section-title">{sub.name}</h1>
+  <p class="section-subtitle">{cat.name} · {notes.length} notes</p>
+
+  <div class="note-list">
+    {notes.map(note => (
+      <a href={`/note/${note.nid}/`} class="note-item">
+        <span class="note-item-title">{note.title}</span>
+        <span class="note-item-id">{note.nid}</span>
+      </a>
+    ))}
+  </div>
+</Base>

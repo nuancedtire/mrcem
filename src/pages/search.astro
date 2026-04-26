@@ -1,0 +1,39 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="Search">
+  <div class="search-wrapper" style="animation: fadeSlideIn 0.35s ease both">
+    <nav aria-label="Breadcrumb" class="breadcrumb">
+      <a href="/">Home</a>
+      <span class="breadcrumb-sep" aria-hidden="true">›</span>
+      <span class="breadcrumb-current" aria-current="page">Search</span>
+    </nav>
+
+    <h1 class="section-title" style="margin-bottom: 0.5rem">Search Notes</h1>
+    <p class="section-subtitle" style="margin-bottom: 2rem; text-transform: none; font-size: 0.9rem; letter-spacing: 0; font-family: 'Source Serif 4', serif; color: var(--muted)">
+      Full-text search across all 1,135 notes
+    </p>
+
+    <link href="/pagefind/pagefind-ui.css" rel="stylesheet" />
+    <div id="search"></div>
+
+    <style>
+      .pagefind-ui {
+        --pagefind-ui-font: 'Source Serif 4', serif;
+        --pagefind-ui-primary: var(--accent);
+        --pagefind-ui-text: var(--ink);
+        --pagefind-ui-background: var(--surface);
+        --pagefind-ui-border: var(--border);
+        --pagefind-ui-border-radius: 6px;
+      }
+    </style>
+  </div>
+
+  <script src="/pagefind/pagefind-ui.js" is:inline></script>
+  <script is:inline>
+    window.addEventListener('DOMContentLoaded', () => {
+      new PagefindUI({ element: '#search', showSubResults: true, resetStyles: false });
+    });
+  </script>
+</Base>

@@ -1,0 +1,46 @@
+---
+import Base from '../../layouts/Base.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import NoteBody from '../../components/NoteBody.astro';
+import Pagination from '../../components/Pagination.astro';
+import { getAllNotes, getNoteByNid, getAdjacentNotes } from '../../data/notes';
+
+export async function getStaticPaths() {
+  return getAllNotes().map(note => ({ params: { nid: note.nid } }));
+}
+
+const { nid } = Astro.params;
+const note = getNoteByNid(nid)!;
+const { prev, next } = getAdjacentNotes(nid);
+
+const crumbs = [
+  { label: note.categoryName, href: `/${note.categorySlug}/` },
+  ...(note.subcategorySlug
+    ? [{ label: note.subcategoryName, href: `/${note.categorySlug}/${note.subcategorySlug}/` }]
+    : []),
+  { label: note.title },
+];
+---
+
+<Base title={note.title} description={`${note.categoryName} note: ${note.title}`} showProgress>
+  <Breadcrumb crumbs={crumbs} />
+
+  <article>
+    <h1 class="note-title" data-pagefind-meta="title">{note.title}</h1>
+    <div class="note-meta">
+      <a href={`/${note.categorySlug}/`}>{note.categoryName}</a>
+      {note.subcategoryName && (
+        <>
+          <span style="opacity:0.4; margin: 0 0.4rem">·</span>
+          <a href={`/${note.categorySlug}/${note.subcategorySlug}/`}>{note.subcategoryName}</a>
+        </>
+      )}
+      <span style="opacity:0.4; margin: 0 0.4rem">·</span>
+      <span data-pagefind-filter="category">{note.categoryName}</span>
+    </div>
+
+    <NoteBody html={note.bodyHtml} />
+  </article>
+
+  <Pagination prev={prev} next={next} />
+</Base>

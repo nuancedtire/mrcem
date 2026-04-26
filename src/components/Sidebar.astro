@@ -1,0 +1,48 @@
+---
+import type { Category } from '../data/notes';
+
+interface Props {
+  categories: Category[];
+  currentPath: string;
+}
+
+const { categories, currentPath } = Astro.props;
+
+function isActive(href: string) {
+  return currentPath === href || currentPath.startsWith(href + '/');
+}
+---
+
+<nav id="sidebar" class="sidebar" aria-label="Main navigation">
+  <p class="sidebar-heading">Categories</p>
+
+  {categories.map(cat => (
+    <div class="sidebar-section">
+      <a
+        href={`/${cat.slug}/`}
+        class:list={['sidebar-cat', { active: isActive(`/${cat.slug}`) }]}
+      >
+        {cat.name}
+        <span class="sidebar-count">{cat.count}</span>
+      </a>
+
+      {cat.subcategories.map(sub => (
+        <a
+          href={`/${cat.slug}/${sub.slug}/`}
+          class:list={['sidebar-sub', { active: currentPath === `/${cat.slug}/${sub.slug}/` }]}
+        >
+          {sub.name}
+          <span class="sidebar-count">{sub.count}</span>
+        </a>
+      ))}
+    </div>
+  ))}
+
+  <div class="sidebar-divider" />
+
+  <div class="sidebar-section">
+    <a href="/search/" class:list={['sidebar-cat', { active: currentPath === '/search/' }]}>
+      Search
+    </a>
+  </div>
+</nav>

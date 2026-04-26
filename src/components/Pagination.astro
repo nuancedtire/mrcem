@@ -1,0 +1,28 @@
+---
+import type { Note } from '../data/notes';
+
+interface Props {
+  prev: Note | null;
+  next: Note | null;
+}
+
+const { prev, next } = Astro.props;
+---
+
+{(prev || next) && (
+  <nav class="pagination" aria-label="Note navigation">
+    {prev ? (
+      <a href={`/note/${prev.nid}/`} class="pagination-link prev">
+        <div class="pagination-label">← Previous</div>
+        <div class="pagination-title">{prev.title}</div>
+      </a>
+    ) : <div />}
+
+    {next ? (
+      <a href={`/note/${next.nid}/`} class="pagination-link next">
+        <div class="pagination-label">Next →</div>
+        <div class="pagination-title">{next.title}</div>
+      </a>
+    ) : <div />}
+  </nav>
+)}
