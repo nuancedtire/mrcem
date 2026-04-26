@@ -630,6 +630,12 @@ body {
   margin: 0;
   border: none;
 }
+
+/* Default all data tables to full-width so videos and content fill the column */
+.note-body table {
+  width: 100%;
+  table-layout: fixed;
+}
 .note-body center table th,
 .note-body center table td,
 .note-body CENTER table th,
@@ -727,8 +733,7 @@ body {
 .note-body .video-wrapper {
   position: relative;
   width: 100%;
-  padding-bottom: 56.25%; /* 16:9 */
-  height: 0;
+  aspect-ratio: 16 / 9;
   overflow: hidden;
   border-radius: var(--radius-lg);
   margin: 1.75em 0;
@@ -736,18 +741,11 @@ body {
 }
 .note-body .video-wrapper iframe {
   position: absolute;
-  top: 0; left: 0;
+  inset: 0;
   width: 100%;
   height: 100%;
   border: none;
   border-radius: var(--radius-lg);
-}
-/* Force parent tables to full width so videos aren't squeezed by narrow <td> */
-.note-body table:has(.video-wrapper) {
-  width: 100% !important;
-}
-.note-body table:has(.video-wrapper) td {
-  width: 100%;
 }
 .note-body a[data-fancybox]:hover, .note-body a.fancybox:hover { opacity: 0.8; }
 

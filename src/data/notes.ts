@@ -108,6 +108,13 @@ const CLUTTER_PATTERNS = [
   /<span[^>]*link_bad_count[^>]*>[\s\S]*?<\/span>/gi,
   // Generic btn-sm in table (often rating buttons)
   /<button[^>]*btn-sm[^>]*>[\s\S]*?<\/button>/gi,
+  // Media rating buttons (thumbs up/down)
+  /<button[^>]*rate-media[^>]*>[\s\S]*?<\/button>/gi,
+  // Media good/bad count spans
+  /<span[^>]*media_good_count[^>]*>[\s\S]*?<\/span>/gi,
+  /<span[^>]*media_bad_count[^>]*>[\s\S]*?<\/span>/gi,
+  // Leftover media_link text anchors (not the thumbnail ones)
+  /<a[^>]*media_link[^>]*>[\s\S]*?<\/a>/gi,
 ];
 
 const MALFORMED_PATTERNS: [RegExp, string][] = [
@@ -224,33 +231,27 @@ function fixTableCells(html: string): string {
   });
 }
 
+function makeVideoEmbed(url: string): string {
+  const videoId = url.match(/(?:embed\/|v=|\/v\/)([a-zA-Z0-9_-]{11})/)?.[1];
+  if (!videoId) return '';
+  return `<div class="video-wrapper"><iframe src="https://www.youtube.com/embed/${videoId}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe></div>`;
+}
+
 function embedYouTubeVideos(html: string): string {
-  // Convert media_link anchors to responsive iframe embeds
-  html = html.replace(
-    /<a[^>]*class\s*=\s*['"][^'"]*media_link[^'"]*['"][^>]*data-url\s*=\s*['"]([^'"]+)['"][^>]*>\s*<img[^>]*>\s*<\/a>/gi,
-    (_full: string, url: string) => {
-      const videoId = url.match(/(?:embed\/|v=|\/v\/)([a-zA-Z0-9_-]{11})/)?.[1];
-      if (!videoId) return '';
-      return `<div class="video-wrapper"><iframe src="https://www.youtube.com/embed/${videoId}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe></div>`;
-    }
-  );
+  // Convert media_link anchors that contain an <img> (the actual video thumbnails)
+  const mediaLinkRe = /<a[^>]*class\s*=\s*['"][^'"]*media_link[^'"]*['"][^>]*data-url\s*=\s*['"]([^'"]+)['"][^>]*>\s*<img[\s\S]*?<\/a>/gi;
+  html = html.replace(mediaLinkRe, (_full: string, url: string) => makeVideoEmbed(url));
 
-  // Also handle the pattern where data-url might come after class
-  html = html.replace(
-    /<a[^>]*data-url\s*=\s*['"]([^'"]+)['"][^>]*class\s*=\s*['"][^'"]*media_link[^'"]*['"][^>]*>\s*<img[^>]*>\s*<\/a>/gi,
-    (_full: string, url: string) => {
-      const videoId = url.match(/(?:embed\/|v=|\/v\/)([a-zA-Z0-9_-]{11})/)?.[1];
-      if (!videoId) return '';
-      return `<div class="video-wrapper"><iframe src="https://www.youtube.com/embed/${videoId}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe></div>`;
-    }
-  );
+  // Also handle the pattern where data-url comes before class
+  const mediaLinkRe2 = /<a[^>]*data-url\s*=\s*['"]([^'"]+)['"][^>]*class\s*=\s*['"][^'"]*media_link[^'"]*['"][^>]*>\s*<img[\s\S]*?<\/a>/gi;
+  html = html.replace(mediaLinkRe2, (_full: string, url: string) => makeVideoEmbed(url));
 
-  // Wrap existing bare iframes in responsive container (skip those already wrapped)
+  // Wrap existing bare iframes in responsive container (strip width/height attributes)
   html = html.replace(
-    /<iframe\s+([^>]*)src\s*=\s*['"]([^'"]*)['"]([^>]*)>\s*<\/iframe>/gi,
-    (_full: string, before: string, src: string, after: string) => {
+    /<iframe\s+[^>]*src\s*=\s*['"]([^'"]*)['"][^>]*>\s*<\/iframe>/gi,
+    (_full: string, src: string) => {
       if (src.includes('youtube.com') || src.includes('youtu.be')) {
-        return `<div class="video-wrapper"><iframe ${before}src="${src}"${after}></iframe></div>`;
+        return `<div class="video-wrapper"><iframe src="${src}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe></div>`;
       }
       return _full;
     }
@@ -269,6 +270,9 @@ function processHtml(html: string): string {
   // Strip meta divs (categorynum, categoryname, subcategorynum, subcategoryname)
   result = result.replace(META_DIV_RE, '');
 
+  // Convert YouTube media links to embeds FIRST (before clutter removal strips them)
+  result = embedYouTubeVideos(result);
+
   // Remove clutter
   for (const re of CLUTTER_PATTERNS) {
     result = result.replace(re, '');
@@ -282,15 +286,18 @@ function processHtml(html: string): string {
   // Fix unclosed <ul>/<li> tags inside <td> cells
   result = fixTableCells(result);
 
-  // Convert YouTube media links to embeds and wrap existing iframes
-  result = embedYouTubeVideos(result);
-
   // Clean up trailing <BR>/<br> noise
   result = result.replace(/(?:<br\s*\/?>\s*|<BR\s*\/?>\s*)+$/gi, '');
 
   // Remove leftover empty tables (gutted by clutter removal)
   result = result.replace(/<table[^>]*>\s*<\/table>/gi, '');
   result = result.replace(/<td\s+style\s*=\s*['"][^'"]*float\s*:\s*right[^'"]*['"][^>]*>\s*<\/td>/gi, '');
+
+  // Clean up video tables: keep only the row with the video wrapper, strip empty cells/rows
+  result = result.replace(
+    /(<div id="mybodymedia">)<table[^>]*>[\s\S]*?(<div class="video-wrapper">[\s\S]*?<\/div>)[\s\S]*?<\/table>/gi,
+    '$1$2'
+  );
 
   // Replace CDN URLs
   result = result.replace(CDN_RE, '/images');
