@@ -3,6 +3,7 @@ import Base from '../../layouts/Base.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
 import NoteBody from '../../components/NoteBody.astro';
 import Pagination from '../../components/Pagination.astro';
+import Toc from '../../components/Toc.astro';
 import { getAllNotes, getNoteByNid, getAdjacentNotes } from '../../data/notes';
 
 export async function getStaticPaths() {
@@ -20,9 +21,11 @@ const crumbs = [
     : []),
   { label: note.title },
 ];
+
+const hasToc = note.headings.length > 1;
 ---
 
-<Base title={note.title} description={`${note.categoryName} note: ${note.title}`} showProgress>
+<Base title={note.title} description={`${note.categoryName} note: ${note.title}`} showProgress hasToc={hasToc}>
   <Breadcrumb crumbs={crumbs} />
 
   <article>
@@ -44,3 +47,5 @@ const crumbs = [
 
   <Pagination prev={prev} next={next} />
 </Base>
+
+{hasToc && <Toc headings={note.headings} slot="toc" />}

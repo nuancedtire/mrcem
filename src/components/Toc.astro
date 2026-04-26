@@ -1,0 +1,71 @@
+---
+import type { TocHeading } from '../data/notes';
+
+interface Props {
+  headings: TocHeading[];
+}
+
+const { headings } = Astro.props;
+
+if (headings.length === 0) return null;
+---
+
+<aside class="toc-wrapper" aria-label="On this page">
+  <p class="toc-heading">On this page</p>
+  <ul class="toc-list">
+    {headings.map(h => (
+      <li>
+        <a href={`#${h.id}`} class="toc-link" data-level={h.level} data-toc-link>
+          {h.text}
+        </a>
+      </li>
+    ))}
+  </ul>
+</aside>
+
+<script>
+  function initToc() {
+    const links = document.querySelectorAll<HTMLAnchorElement>('[data-toc-link]');
+    if (links.length === 0) return;
+
+    const ids = Array.from(links).map(a => a.getAttribute('href')!.slice(1));
+    const targets = ids
+      .map(id => document.getElementById(id))
+      .filter(Boolean) as HTMLElement[];
+    if (targets.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        // Find the first visible target from the top
+        let activeId: string | null = null;
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            activeId = entry.target.id;
+            break;
+          }
+        }
+        // If nothing is intersecting, find the one just above viewport
+        if (!activeId) {
+          let bestTop = -Infinity;
+          for (const target of targets) {
+            const rect = target.getBoundingClientRect();
+            if (rect.top <= 120 && rect.top > bestTop) {
+              bestTop = rect.top;
+              activeId = target.id;
+            }
+          }
+        }
+        links.forEach(link => {
+          const isActive = link.getAttribute('href') === `#${activeId}`;
+          link.classList.toggle('active', isActive);
+        });
+      },
+      { rootMargin: '-80px 0px -60% 0px', threshold: 0 }
+    );
+
+    targets.forEach(t => observer.observe(t));
+  }
+
+  document.addEventListener('astro:page-load', initToc);
+  if (document.readyState !== 'loading') initToc();
+</script>

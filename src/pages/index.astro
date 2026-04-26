@@ -1,9 +1,10 @@
 ---
 import Base from '../layouts/Base.astro';
-import { getCategories } from '../data/notes';
+import { getCategories, getCategoryMeta } from '../data/notes';
 
 const categories = getCategories();
 const totalNotes = categories.reduce((s, c) => s + c.count, 0);
+const totalSubs = categories.reduce((s, c) => s + c.subcategories.length, 0);
 
 const catDescriptions: Record<string, string> = {
   'anatomy': 'Regional structures, surface landmarks, and applied surgical anatomy',
@@ -22,23 +23,42 @@ const catDescriptions: Record<string, string> = {
       Emergency medicine board preparation —
       {totalNotes.toLocaleString()} structured notes across {categories.length} core disciplines.
     </p>
+    <div class="home-stats">
+      <div class="home-stat">
+        <span class="home-stat-value">{totalNotes.toLocaleString()}</span>
+        <span class="home-stat-label">Notes</span>
+      </div>
+      <div class="home-stat">
+        <span class="home-stat-value">{categories.length}</span>
+        <span class="home-stat-label">Disciplines</span>
+      </div>
+      <div class="home-stat">
+        <span class="home-stat-value">{totalSubs}</span>
+        <span class="home-stat-label">Topics</span>
+      </div>
+    </div>
   </div>
 
-  <nav class="cat-index" aria-label="Subject areas">
-    {categories.map(cat => (
-      <a href={`/${cat.slug}/`} class="cat-row" data-astro-prefetch>
-        <span class="cat-row-num">{String(cat.num).padStart(2, '0')}</span>
-        <span class="cat-row-body">
-          <span class="cat-row-name">{cat.name}</span>
-          <span class="cat-row-desc">{catDescriptions[cat.slug] ?? ''}</span>
-        </span>
-        <span class="cat-row-right">
-          <span class="cat-row-count">{cat.count} notes</span>
-          <svg class="cat-row-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M5 12h14M12 5l7 7-7 7"/>
-          </svg>
-        </span>
-      </a>
-    ))}
+  <nav class="cat-index" aria-label="Subject areas" style="margin-top: 2rem;">
+    {categories.map(cat => {
+      const meta = getCategoryMeta(cat.slug);
+      const subNames = cat.subcategories.slice(0, 3).map(s => s.name).join(' · ');
+      return (
+        <a href={`/${cat.slug}/`} class="cat-card" data-astro-prefetch style={`--cat-tint: ${meta.tint};`}>
+          <span class="cat-card-icon" style={`background: ${meta.tint}; color: var(--accent);`} set:html={`<svg viewBox="0 0 24 24">${meta.icon}</svg>`} />
+          <span class="cat-card-body">
+            <span class="cat-card-name">{cat.name}</span>
+            <span class="cat-card-desc">{catDescriptions[cat.slug] ?? ''}</span>
+            {subNames && <span class="cat-card-subs">{subNames}{cat.subcategories.length > 3 ? ' · …' : ''}</span>}
+          </span>
+          <span class="cat-card-right">
+            <span class="cat-card-count">{cat.count} notes</span>
+            <svg class="cat-card-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </span>
+        </a>
+      );
+    })}
   </nav>
 </Base>

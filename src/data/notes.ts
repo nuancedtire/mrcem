@@ -7,10 +7,17 @@ interface RawNote {
   category: string;
 }
 
+export interface TocHeading {
+  text: string;
+  level: number;
+  id: string;
+}
+
 export interface Note {
   nid: string;
   title: string;
   bodyHtml: string;
+  headings: TocHeading[];
   categoryNum: number;
   categoryName: string;
   categorySlug: string;
@@ -33,6 +40,51 @@ export interface Category {
   count: number;
   subcategories: Subcategory[];
 }
+
+export interface CategoryMeta {
+  icon: string;
+  tint: string;
+  tintDark: string;
+}
+
+export const CATEGORY_META: Record<string, CategoryMeta> = {
+  'anatomy': {
+    icon: '<path d="M12 2a5 5 0 0 1 5 5c0 1.5-.7 2.8-1.8 3.7a8 8 0 0 1 4.8 7.3 2 2 0 0 1-4 0 4 4 0 0 0-8 0 2 2 0 0 1-4 0 8 8 0 0 1 4.8-7.3A4.9 4.9 0 0 1 7 7a5 5 0 0 1 5-5z"/>',
+    tint: '#FDF2F4',
+    tintDark: '#1A060A',
+  },
+  'physiology': {
+    icon: '<path d="M20.8 10.2a6.5 6.5 0 0 1-2 5.8c-.8.7-1.7 1.2-2.7 1.5a2 2 0 0 0-1.6 1.9v.1a2 2 0 0 1-4 0v-.1a2 2 0 0 0-1.6-1.9 6.5 6.5 0 0 1-4.7-7.3c.2-1.5.9-2.8 1.9-3.9.7-.7 1.6-1.2 2.6-1.5A2 2 0 0 0 10 4a2 2 0 0 1 4 0 2 2 0 0 0 1.8 1.7c1 .3 1.9.8 2.6 1.5a6.5 6.5 0 0 1 2.4 3z"/><path d="M12 11v3"/>',
+    tint: '#EFF6FF',
+    tintDark: '#080E1C',
+  },
+  'pharmacology': {
+    icon: '<path d="M10.5 20.5l10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/><path d="M8.5 8.5l7 7"/>',
+    tint: '#ECFDF5',
+    tintDark: '#06140E',
+  },
+  'microbiology': {
+    icon: '<path d="M12 12c0-3 0-3-3-3s-3 0-3 3 0 3 3 3 3 0 3-3z"/><path d="M9 12H4"/><path d="M15 12h5"/><circle cx="12" cy="12" r="10"/>',
+    tint: '#FFFBEB',
+    tintDark: '#141008',
+  },
+  'pathology': {
+    icon: '<path d="M6 21l12-12"/><path d="M10 10l-2-2"/><path d="M18 18l-2-2"/><circle cx="12" cy="12" r="10"/>',
+    tint: '#F5F3FF',
+    tintDark: '#0C061A',
+  },
+  'evidenced-based-medicine': {
+    icon: '<path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/>',
+    tint: '#F1F5F9',
+    tintDark: '#070B14',
+  },
+};
+
+const DEFAULT_META: CategoryMeta = {
+  icon: '<circle cx="12" cy="12" r="10"/>',
+  tint: '#F1F5F9',
+  tintDark: '#070B14',
+};
 
 const CDN_ORIGIN = 'https://d20g8jnrcgqmxh.cloudfront.net';
 const CDN_RE = new RegExp(CDN_ORIGIN.replace(/\./g, '\\.'), 'g');
@@ -67,6 +119,68 @@ const MALFORMED_PATTERNS: [RegExp, string][] = [
 
 function slugify(s: string): string {
   return s.toLowerCase().replace(/&/g, 'and').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+}
+
+function headingId(text: string, used: Set<string>): string {
+  let id = slugify(text);
+  if (!id) id = 'section';
+  let unique = id;
+  let counter = 1;
+  while (used.has(unique)) {
+    unique = `${id}-${counter++}`;
+  }
+  used.add(unique);
+  return unique;
+}
+
+function extractHeadings(html: string): { headings: TocHeading[]; html: string } {
+  const headings: TocHeading[] = [];
+  const usedIds = new Set<string>();
+
+  // 1. Extract semantic <h1>–<h4>
+  html = html.replace(/<(h[1-4])(?:\s+[^>]*)?>(.*?)<\/\1>/gi, (_full: string, tag: string, text: string) => {
+    const level = parseInt(tag[1]);
+    const cleanText = text.replace(/<[^>]+>/g, '').trim();
+    if (!cleanText) return _full;
+    const id = headingId(cleanText, usedIds);
+    headings.push({ text: cleanText, level, id });
+    return `<${tag} id="${id}">${text}</${tag}>`;
+  });
+
+  // 2. Extract <b> tags that look like headings:
+  //    – followed by <br within 12 chars
+  //    – text only (no nested tags), ≤40 chars
+  //    – NOT inside <td>, <li>, <th>
+  html = html.replace(/<b\b[^>]*>([^<]{1,40})<\/b>(\s*<br\s*\/?>)/gi, (_full: string, text: string, br: string) => {
+    const cleanText = text.trim();
+    if (!cleanText) return _full;
+    // Skip if it looks like it might be inside a table cell or list item
+    // (heuristic: check preceding context for <td or <li)
+    const idx = html.indexOf(_full);
+    const preceding = html.substring(Math.max(0, idx - 200), idx);
+    if (/<td\b|<li\b|<th\b/i.test(preceding)) {
+      // Additional check: if the <b> is the only content in the td/li, allow it
+      const sinceLastTag = preceding.match(/<[^>]+>[^<]*$/);
+      if (sinceLastTag && !sinceLastTag[0].startsWith('<td') && !sinceLastTag[0].startsWith('<li') && !sinceLastTag[0].startsWith('<th')) {
+        return _full;
+      }
+    }
+    const id = headingId(cleanText, usedIds);
+    headings.push({ text: cleanText, level: 2, id });
+    return `<h2 id="${id}">${cleanText}</h2>`;
+  });
+
+  headings.sort((a, b) => {
+    const idxA = html.indexOf(`id="${a.id}"`);
+    const idxB = html.indexOf(`id="${b.id}"`);
+    return idxA - idxB;
+  });
+
+  return { headings, html };
+}
+
+export function getCategoryMeta(slug: string): CategoryMeta {
+  return CATEGORY_META[slug] ?? DEFAULT_META;
 }
 
 function extractMeta(html: string) {
@@ -145,10 +259,13 @@ function processHtml(html: string): string {
 // Process all notes once at module load time (build-time)
 const _notes: Note[] = (rawNotes as RawNote[]).map(raw => {
   const meta = extractMeta(raw.body_html);
+  let bodyHtml = processHtml(raw.body_html);
+  const { headings, html } = extractHeadings(bodyHtml);
   return {
     nid: raw.nid,
     title: raw.title,
-    bodyHtml: processHtml(raw.body_html),
+    bodyHtml: html,
+    headings,
     categoryNum: meta.categoryNum,
     categoryName: meta.categoryName,
     categorySlug: slugify(meta.categoryName),

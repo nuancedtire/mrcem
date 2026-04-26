@@ -8,9 +8,10 @@ interface Props {
   title: string;
   description?: string;
   showProgress?: boolean;
+  hasToc?: boolean;
 }
 
-const { title, description = 'MRCEM emergency medicine study notes', showProgress = false } = Astro.props;
+const { title, description = 'MRCEM emergency medicine study notes', showProgress = false, hasToc = false } = Astro.props;
 const categories = getCategories();
 const path = Astro.url.pathname;
 ---
@@ -75,12 +76,12 @@ const path = Astro.url.pathname;
 
     <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
 
-    <div class="layout">
+    <div class:list={['layout', { 'has-toc': hasToc }]}>
       <Sidebar categories={categories} currentPath={path} />
       <main class="main">
         <slot />
       </main>
-    </div>
+      <slot name="toc" />
 
     <!-- Lightbox dialog (shared across note pages) -->
     <dialog id="lightbox" aria-label="Image lightbox">
@@ -154,28 +155,34 @@ const path = Astro.url.pathname;
         const btn = document.getElementById('sidebar-collapse');
         const iconOpen = document.getElementById('sb-icon-open');
         const iconClosed = document.getElementById('sb-icon-closed');
+        if (!btn) return;
 
-        function apply(forceExpanded?: boolean) {
-          const expanded = forceExpanded ?? (localStorage.getItem('sidebar-collapsed') !== 'true');
-          if (expanded) {
-            body.classList.remove('body-sidebar-collapsed');
-            if (iconOpen) iconOpen.style.display = '';
-            if (iconClosed) iconClosed.style.display = 'none';
-            btn?.setAttribute('aria-label', 'Collapse sidebar');
-          } else {
+        const mql = window.matchMedia('(max-width: 768px)');
+
+        function sync() {
+          const collapsed = localStorage.getItem('sidebar-collapsed') === 'true';
+          if (collapsed && !mql.matches) {
             body.classList.add('body-sidebar-collapsed');
             if (iconOpen) iconOpen.style.display = 'none';
             if (iconClosed) iconClosed.style.display = '';
-            btn?.setAttribute('aria-label', 'Expand sidebar');
+            btn.setAttribute('aria-label', 'Expand sidebar');
+            btn.setAttribute('aria-expanded', 'false');
+          } else {
+            body.classList.remove('body-sidebar-collapsed');
+            if (iconOpen) iconOpen.style.display = '';
+            if (iconClosed) iconClosed.style.display = 'none';
+            btn.setAttribute('aria-label', 'Collapse sidebar');
+            btn.setAttribute('aria-expanded', 'true');
           }
         }
 
-        apply();
+        sync();
+        mql.addEventListener('change', sync);
 
-        btn?.addEventListener('click', () => {
-          const isCollapsed = body.classList.contains('body-sidebar-collapsed');
-          localStorage.setItem('sidebar-collapsed', isCollapsed ? 'false' : 'true');
-          apply(!isCollapsed);
+        btn.addEventListener('click', () => {
+          const willCollapse = !body.classList.contains('body-sidebar-collapsed');
+          localStorage.setItem('sidebar-collapsed', willCollapse ? 'true' : 'false');
+          sync();
         });
       }
 
