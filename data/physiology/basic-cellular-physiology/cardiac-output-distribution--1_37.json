@@ -1,8 +1,0 @@
-{
-  "nid": "1_37",
-  "title": "Cardiac output distribution",
-  "body_html": "<div>Normal distribution of cardiac output at rest<br /><br /><div class=\"table-responsive\"><table class = \"tlarge table table-striped table-bordered\"  data-role=\"table\" id=\"tableid1\" ><thead><tr><th>Organ</th><th>Percentage of cardiac output</th></tr></thead><tbody><tr><td>Liver</td><td>25%</td></tr><tr><td>Kidneys</td><td>20-25%</td></tr><tr><td>Muscle</td><td>20%</td></tr><tr><td>Brain</td><td>15%</td></tr><tr><td>Heart</td><td>5%</td></tr><tr><td>Rest of the body</td><td>15%</td></tr></tbody></table></div></div>\n\n<div id=\"mybodylinks\"></div>\n\n<div id=\"mybodymedia\"></div>\n\n\n<div id=\"categorynum\">2</div>\n\n<div id=\"subcategorynum\">1</div>\n\n<div id=\"categoryname\">Physiology</div>\n\n<div id=\"subcategoryname\">Basic cellular physiology</div>\n<div id=\"mybody\">\n\n<div id=\"body_content\">\nNormal distribution of cardiac output at rest<br /><br /><div class=\"table-responsive\"><table class = \"tlarge table table-striped table-bordered\"  data-role=\"table\" id=\"tableid1\" ><thead><tr><th>Organ</th><th>Percentage of cardiac output</th></tr></thead><tbody><tr><td>Liver</td><td>25%</td></tr><tr><td>Kidneys</td><td>20-25%</td></tr><tr><td>Muscle</td><td>20%</td></tr><tr><td>Brain</td><td>15%</td></tr><tr><td>Heart</td><td>5%</td></tr><tr><td>Rest of the body</td><td>15%</td></tr></tbody></table></div></div>\n\n\n<BR><BR><br><br></div>",
-  "category": "1",
-  "sort_order": 5,
-  "related_nids": []
-}

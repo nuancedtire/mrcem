@@ -1,0 +1,8 @@
+{
+  "nid": "2_2117",
+  "title": "Aorta",
+  "body_html": "<div>Level of selected branches/landmarks:<br /><br /><div class=\"table-responsive\"><table class = \"tlarge table table-striped table-bordered\"  data-role=\"table\" id=\"tableid1\" ><thead><tr><th><b>Vertebral Level</b></th><th><b>Branch of aorta</b></th></tr></thead><tbody><tr><td>T12</td><td>Coeliac trunk</td></tr><tr><td>L1</td><td>Left renal artery</td></tr><tr><td>L2</td><td>Testicular or ovarian arteries</td></tr><tr><td>L3</td><td>Inferior mesenteric artery</td></tr><tr><td>L4</td><td>Bifurcation of the abdominal aorta</td></tr></tbody></table></div></div>\n\n<div id=\"mybodylinks\"></div>\n\n<div id=\"mybodymedia\"></div>\n\n\n<div id=\"categorynum\">1</div>\n\n<div id=\"subcategorynum\">1</div>\n\n<div id=\"categoryname\">Anatomy</div>\n\n<div id=\"subcategoryname\">Abdomen & pelvis</div>\n<div id=\"mybody\">\n\n<div id=\"body_content\">\nLevel of selected branches/landmarks:<br /><br /><div class=\"table-responsive\"><table class = \"tlarge table table-striped table-bordered\"  data-role=\"table\" id=\"tableid1\" ><thead><tr><th><b>Vertebral Level</b></th><th><b>Branch of aorta</b></th></tr></thead><tbody><tr><td>T12</td><td>Coeliac trunk</td></tr><tr><td>L1</td><td>Left renal artery</td></tr><tr><td>L2</td><td>Testicular or ovarian arteries</td></tr><tr><td>L3</td><td>Inferior mesenteric artery</td></tr><tr><td>L4</td><td>Bifurcation of the abdominal aorta</td></tr></tbody></table></div></div>\n\n\n<BR><BR><br><br></div>",
+  "category": "2",
+  "sort_order": 53,
+  "related_nids": []
+}
