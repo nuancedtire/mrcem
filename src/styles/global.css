@@ -131,7 +131,7 @@ body {
 }
 .topbar-btn:hover { color: var(--ink); background: var(--surface-alt); }
 
-#sidebar-toggle { display: none; }
+#sidebar-toggle { display: flex; }
 
 /* ─── Shell ──────────────────────────────────────────────────────────────── */
 .layout {
@@ -275,6 +275,28 @@ body {
   display: inline-block;
   width: 14px;
   flex-shrink: 0;
+}
+
+.cat-icon {
+  display: inline-flex;
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  color: var(--muted);
+  opacity: 0.65;
+}
+.cat-icon svg {
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.sidebar-cat.active .cat-icon {
+  color: var(--accent);
+  opacity: 1;
 }
 
 .sidebar-sublist {
@@ -896,8 +918,10 @@ body {
     height: calc(100dvh - var(--topbar-h));
     box-shadow: var(--shadow-lg);
   }
-  .sidebar.open { transform: translateX(0); }
-
+  .sidebar.open,
+  .body-sidebar-collapsed .sidebar.open {
+    transform: translateX(0);
+  }
   .body-sidebar-collapsed .sidebar {
     transform: translateX(-100%);
   }

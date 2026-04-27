@@ -1,5 +1,6 @@
 ---
 import type { Category } from '../data/notes';
+import { getCategoryMeta } from '../data/notes';
 
 interface Props {
   categories: Category[];
@@ -22,6 +23,8 @@ const IconChevronDown = `<svg xmlns="http://www.w3.org/2000/svg" width="14" heig
   {categories.map(cat => {
     const catActive = isActive(`/${cat.slug}`);
     const hasSubs = cat.subcategories.length > 0;
+    const meta = getCategoryMeta(cat.slug);
+    const catIcon = `<svg viewBox="0 0 24 24" style="width:100%;height:100%;">${meta.icon}</svg>`;
     return (
       <div class="sidebar-section" data-cat-slug={cat.slug}>
         {hasSubs ? (
@@ -33,6 +36,7 @@ const IconChevronDown = `<svg xmlns="http://www.w3.org/2000/svg" width="14" heig
           >
             <span class="sidebar-cat-label">
               <span class="sidebar-chevron" aria-hidden="true" set:html={IconChevronDown} />
+              <span class="cat-icon" set:html={catIcon} />
               <span class="sidebar-cat-text">{cat.name}</span>
             </span>
             <span class="sidebar-count">{cat.count}</span>
@@ -44,6 +48,7 @@ const IconChevronDown = `<svg xmlns="http://www.w3.org/2000/svg" width="14" heig
           >
             <span class="sidebar-cat-label">
               <span class="sidebar-chevron-placeholder" />
+              <span class="cat-icon" set:html={catIcon} />
               <span class="sidebar-cat-text">{cat.name}</span>
             </span>
             <span class="sidebar-count">{cat.count}</span>
@@ -86,7 +91,7 @@ const IconChevronDown = `<svg xmlns="http://www.w3.org/2000/svg" width="14" heig
     const sidebar = document.getElementById('sidebar');
     if (!sidebar) return;
 
-    // ── Accordion ──
+    // —— Accordion ——
     let openCats: string[] = [];
     try {
       const stored = localStorage.getItem('sidebar-open-cats');
@@ -134,7 +139,6 @@ const IconChevronDown = `<svg xmlns="http://www.w3.org/2000/svg" width="14" heig
       });
     }
 
-    initAccordion();
     document.addEventListener('astro:page-load', initAccordion);
   })();
 </script>
