@@ -10,7 +10,7 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
     server: {
-      allowedHosts: ['ocode.exe.xyz'],
+      allowedHosts: ['ocode.exe.xyz', 'fermes.exe.xyz'],
     },
   },
 
