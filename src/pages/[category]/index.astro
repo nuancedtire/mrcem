@@ -35,7 +35,6 @@ const notes = hasSubcategories ? [] : getNotesByCategory(cat.slug);
       {notes.map(note => (
         <a href={`/note/${note.nid}/`} class="note-item">
           <span class="note-item-title">{note.title}</span>
-          <span class="note-item-id">{note.nid}</span>
         </a>
       ))}
     </div>

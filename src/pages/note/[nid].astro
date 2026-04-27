@@ -31,21 +31,18 @@ const hasToc = note.headings.length > 1;
   <article>
     <h1 class="note-title" data-pagefind-meta="title">{note.title}</h1>
     <div class="note-meta">
-      <a href={`/${note.categorySlug}/`}>{note.categoryName}</a>
+      <a href={`/${note.categorySlug}/`} data-pagefind-filter="category">{note.categoryName}</a>
       {note.subcategoryName && (
         <>
           <span class="note-meta-sep">·</span>
           <a href={`/${note.categorySlug}/${note.subcategorySlug}/`}>{note.subcategoryName}</a>
         </>
       )}
-      <span class="note-meta-sep">·</span>
-      <span data-pagefind-filter="category">{note.categoryName}</span>
     </div>
 
     <NoteBody html={note.bodyHtml} />
   </article>
 
   <Pagination prev={prev} next={next} />
+  {hasToc && <Toc headings={note.headings} slot="toc" />}
 </Base>
-
-{hasToc && <Toc headings={note.headings} slot="toc" />}

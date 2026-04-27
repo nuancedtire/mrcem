@@ -213,7 +213,7 @@ function extractRawContent(html: string): string {
 function fixTableCells(html: string): string {
   // Fix unclosed <ul> and <li> tags inside <td> elements.
   // Source data has patterns like <td><ul><li>Content</td> with missing </li></ul>
-  return html.replace(/<td[^>]*>([\s\S]*?)<\/td>/gi, (_full: string, inner: string) => {
+  return html.replace(/<(td[^>]*)>([\s\S]*?)<\/td>/gi, (_full: string, tdAttrs: string, inner: string) => {
     let fixed = inner;
     // Count open <li> without matching </li>
     const liOpens = (fixed.match(/<li[^>]*>/gi) || []).length;
@@ -227,7 +227,7 @@ function fixTableCells(html: string): string {
     for (let i = ulCloses; i < ulOpens; i++) {
       fixed += '</ul>';
     }
-    return `<td>${fixed}</td>`;
+    return `<${tdAttrs}>${fixed}</td>`;
   });
 }
 

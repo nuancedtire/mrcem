@@ -162,11 +162,6 @@ body {
   border-right-color: transparent;
 }
 
-.body-sidebar-collapsed .main {
-  padding-left: 3rem;
-  padding-right: 3rem;
-}
-
 .sidebar-heading {
   font-family: 'Syne', sans-serif;
   font-size: 0.6rem;
@@ -478,16 +473,6 @@ body {
   transition: color 0.15s;
 }
 
-.note-item-id {
-  font-family: 'Syne', sans-serif;
-  font-size: 0.6rem;
-  font-weight: 500;
-  letter-spacing: 0.06em;
-  color: var(--muted);
-  white-space: nowrap;
-  opacity: 0.7;
-  flex-shrink: 0;
-}
 
 /* ─── Note page ──────────────────────────────────────────────────────────── */
 .note-title {
@@ -572,6 +557,7 @@ body {
   border-collapse: collapse;
   margin: 1.75em 0;
   font-size: 0.875rem;
+  table-layout: fixed;
 }
 .note-body th {
   padding: 0.6rem 1rem;
@@ -631,11 +617,7 @@ body {
   border: none;
 }
 
-/* Default all data tables to full-width so videos and content fill the column */
-.note-body table {
-  width: 100%;
-  table-layout: fixed;
-}
+
 .note-body center table th,
 .note-body center table td,
 .note-body CENTER table th,
@@ -871,8 +853,8 @@ body {
   .sidebar-backdrop.open { display: block; }
 
   .body-sidebar-collapsed .main {
-    padding-left: 1.25rem !important;
-    padding-right: 1.25rem !important;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
   }
 
   .main { padding: 1.75rem 1.25rem; }
