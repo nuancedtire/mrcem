@@ -16,33 +16,123 @@ function isActive(href: string) {
 <nav id="sidebar" class="sidebar" aria-label="Main navigation">
   <p class="sidebar-heading">Categories</p>
 
-  {categories.map(cat => (
-    <div class="sidebar-section">
-      <a
-        href={`/${cat.slug}/`}
-        class:list={['sidebar-cat', { active: isActive(`/${cat.slug}`) }]}
-      >
-        {cat.name}
-        <span class="sidebar-count">{cat.count}</span>
-      </a>
+  {categories.map(cat => {
+    const catActive = isActive(`/${cat.slug}`);
+    const hasSubs = cat.subcategories.length > 0;
+    return (
+      <div class="sidebar-section" data-cat-slug={cat.slug}>
+        {hasSubs ? (
+          <button
+            type="button"
+            class:list={['sidebar-cat', 'sidebar-toggle', { active: catActive }]}
+            aria-expanded={catActive ? 'true' : 'false'}
+            aria-controls={`sublist-${cat.slug}`}
+          >
+            <span class="sidebar-cat-label">
+              <svg class="sidebar-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="9 18 15 12 9 6" />
+              </svg>
+              {cat.name}
+            </span>
+            <span class="sidebar-count">{cat.count}</span>
+          </button>
+        ) : (
+          <a
+            href={`/${cat.slug}/`}
+            class:list={['sidebar-cat', { active: catActive }]}
+          >
+            <span class="sidebar-cat-label">
+              <span class="sidebar-chevron-spacer" />
+              {cat.name}
+            </span>
+            <span class="sidebar-count">{cat.count}</span>
+          </a>
+        )}
 
-      {cat.subcategories.map(sub => (
-        <a
-          href={`/${cat.slug}/${sub.slug}/`}
-          class:list={['sidebar-sub', { active: isActive(`/${cat.slug}/${sub.slug}`) }]}
-        >
-          {sub.name}
-          <span class="sidebar-count">{sub.count}</span>
-        </a>
-      ))}
-    </div>
-  ))}
+        {hasSubs && (
+          <div id={`sublist-${cat.slug}`} class:list={['sidebar-sublist', { open: catActive }]}>
+            {cat.subcategories.map(sub => (
+              <a
+                href={`/${cat.slug}/${sub.slug}/`}
+                class:list={['sidebar-sub', { active: isActive(`/${cat.slug}/${sub.slug}`) }]}
+              >
+                {sub.name}
+                <span class="sidebar-count">{sub.count}</span>
+              </a>
+            ))}
+          </div>
+        )}
+      </div>
+    );
+  })}
 
   <div class="sidebar-divider" />
 
   <div class="sidebar-section">
     <a href="/search/" class:list={['sidebar-cat', { active: currentPath === '/search/' }]}>
-      Search
+      <span class="sidebar-cat-label">
+        <span class="sidebar-chevron-spacer" />
+        Search
+      </span>
     </a>
   </div>
 </nav>
+
+<script>
+  function initSidebarAccordion() {
+    const sidebar = document.getElementById('sidebar');
+    if (!sidebar) return;
+
+    let openCats: string[] = [];
+    try {
+      const stored = localStorage.getItem('sidebar-open-cats');
+      if (stored) openCats = JSON.parse(stored);
+    } catch {}
+
+    const isActive = (href: string) => {
+      const path = location.pathname;
+      return path === href || path.startsWith(href + '/');
+    };
+
+    sidebar.querySelectorAll<HTMLButtonElement>('.sidebar-toggle').forEach(btn => {
+      const slug = btn.closest('.sidebar-section')?.getAttribute('data-cat-slug');
+      const sublist = btn.nextElementSibling as HTMLElement | null;
+      if (!slug || !sublist) return;
+
+      const active = isActive('/' + slug);
+      const shouldOpen = openCats.includes(slug) || active;
+
+      if (shouldOpen) {
+        sublist.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+        btn.classList.add('expanded');
+      } else {
+        sublist.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+        btn.classList.remove('expanded');
+      }
+
+      const newBtn = btn.cloneNode(true) as HTMLButtonElement;
+      btn.parentNode!.replaceChild(newBtn, btn);
+
+      newBtn.addEventListener('click', () => {
+        const isOpen = sublist.classList.contains('open');
+        if (isOpen) {
+          sublist.classList.remove('open');
+          newBtn.setAttribute('aria-expanded', 'false');
+          newBtn.classList.remove('expanded');
+          openCats = openCats.filter(s => s !== slug);
+        } else {
+          sublist.classList.add('open');
+          newBtn.setAttribute('aria-expanded', 'true');
+          newBtn.classList.add('expanded');
+          if (!openCats.includes(slug)) openCats.push(slug);
+        }
+        localStorage.setItem('sidebar-open-cats', JSON.stringify(openCats));
+      });
+    });
+  }
+
+  document.addEventListener('astro:page-load', initSidebarAccordion);
+  if (document.readyState !== 'loading') initSidebarAccordion();
+</script>
