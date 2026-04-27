@@ -1,4 +1,7 @@
-import rawNotes from '../../data/_all_notes.json';
+const modules = import.meta.glob('../../data/**/*.json', { eager: true });
+const rawNotes = Object.values(modules)
+  .map((m: any) => m.default)
+  .filter((n: any) => n && n.nid) as RawNote[];
 
 interface RawNote {
   nid: string;
@@ -77,6 +80,11 @@ export const CATEGORY_META: Record<string, CategoryMeta> = {
     icon: '<path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/>',
     tint: '#F1F5F9',
     tintDark: '#070B14',
+  },
+  'embryology': {
+    icon: '<path d="M12 2a5 5 0 0 1 5 5c0 1.5-.7 2.8-1.8 3.7a8 8 0 0 1 4.8 7.3 2 2 0 0 1-4 0 4 4 0 0 0-8 0 2 2 0 0 1-4 0 8 8 0 0 1 4.8-7.3A4.9 4.9 0 0 1 7 7a5 5 0 0 1 5-5z"/>',
+    tint: '#FDF2F8',
+    tintDark: '#1A0610',
   },
 };
 
