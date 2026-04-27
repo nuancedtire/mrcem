@@ -414,6 +414,7 @@ export function getNoteByNid(nid: string): Note | undefined {
 const SUBCATEGORY_SORT_OVERRIDE: Record<number, Record<number, number>> = {
   3: { 9326: 1, 300: 2, 100: 3, 4059: 4, 200: 5 }, // Pharmacology: Cardiovascular → GI → Neuropsych → Antimicrobials → Endocrine
   4: { 7650: 1, 8423: 2, 300: 3, 200: 4, 100: 5 }, // Microbiology: Bacteriology → Virology → Clinical → Immunology → Parasitology
+  6: { 1: 1, 2: 2, 3: 3, 4: 4, 5: 5 },              // EBM: Foundational → Distributions → Hypothesis Testing → Risk/Screening → Epidemiology
 };
 
 export function getCategories(): Category[] {
