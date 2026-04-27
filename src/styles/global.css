@@ -44,7 +44,11 @@
 
 /* ─── Reset ─────────────────────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--topbar-h) + 1.25rem);
+  -webkit-text-size-adjust: 100%;
+}
 body {
   font-family: 'Newsreader', Georgia, serif;
   font-size: 17px;
@@ -930,6 +934,69 @@ body {
 .toc-link[data-level="3"] { padding-left: 1.25rem; }
 .toc-link[data-level="4"] { padding-left: 1.75rem; }
 
+/* ─── TOC inline (tablet + mobile) ──────────────────────────────────────── */
+/* Shown when the right-sidebar TOC is not visible (<1024px) */
+.toc-inline {
+  display: none;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  margin-bottom: 2rem;
+  overflow: hidden;
+}
+
+.toc-inline-summary {
+  padding: 0.7rem 1rem;
+  font-family: 'Syne', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  cursor: pointer;
+  user-select: none;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: color 0.12s;
+}
+.toc-inline-summary::-webkit-details-marker { display: none; }
+.toc-inline-summary:hover { color: var(--ink); }
+.toc-inline-summary::after {
+  content: '';
+  margin-left: auto;
+  width: 7px;
+  height: 7px;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(45deg);
+  transition: transform 0.15s;
+  flex-shrink: 0;
+}
+.toc-inline[open] .toc-inline-summary::after { transform: rotate(-135deg); }
+
+.toc-inline-list {
+  list-style: none;
+  margin: 0;
+  padding: 0.4rem 0 0.6rem;
+  border-top: 1px solid var(--border);
+}
+.toc-inline-list li { margin: 0; }
+
+.toc-inline-link {
+  display: block;
+  padding: 0.22rem 1rem;
+  font-family: 'Newsreader', serif;
+  font-variation-settings: 'opsz' 10;
+  font-size: 0.875rem;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.12s;
+}
+.toc-inline-link:hover { color: var(--ink); }
+.toc-inline-link[data-level="3"] { padding-left: 1.75rem; }
+.toc-inline-link[data-level="4"] { padding-left: 2.5rem; }
+
 /* ─── Evolved Home page ──────────────────────────────────────────────────── */
 .home-stats {
   display: flex;
@@ -1056,6 +1123,13 @@ body {
     padding-right: 2rem;
   }
   .toc-wrapper {
+    display: block;
+  }
+}
+
+/* ─── Tablet + mobile: show inline TOC ──────────────────────────────────── */
+@media (max-width: 1023px) {
+  .toc-inline {
     display: block;
   }
 }

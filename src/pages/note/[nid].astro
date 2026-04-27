@@ -40,6 +40,19 @@ const hasToc = note.headings.length > 1;
       )}
     </div>
 
+    {hasToc && (
+      <details class="toc-inline">
+        <summary class="toc-inline-summary">On this page</summary>
+        <ul class="toc-inline-list">
+          {note.headings.map(h => (
+            <li>
+              <a href={`#${h.id}`} class="toc-inline-link" data-level={h.level}>{h.text}</a>
+            </li>
+          ))}
+        </ul>
+      </details>
+    )}
+
     <NoteBody html={note.bodyHtml} />
   </article>
 

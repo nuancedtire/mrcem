@@ -34,38 +34,52 @@ if (headings.length === 0) return null;
       .filter(Boolean) as HTMLElement[];
     if (targets.length === 0) return;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        // Find the first visible target from the top
-        let activeId: string | null = null;
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            activeId = entry.target.id;
+    // Track which headings are currently in the viewport's reading zone
+    const intersecting = new Set<string>();
+
+    function updateActive() {
+      // Pick the first heading in document order that is inside the intersection zone
+      let activeId = targets.find(t => intersecting.has(t.id))?.id ?? null;
+
+      // Fallback when scrolled below all headings or between sections:
+      // highlight the last heading that has passed the topbar
+      if (!activeId) {
+        for (let i = targets.length - 1; i >= 0; i--) {
+          if (targets[i].getBoundingClientRect().top <= 80) {
+            activeId = targets[i].id;
             break;
           }
         }
-        // If nothing is intersecting, find the one just above viewport
-        if (!activeId) {
-          let bestTop = -Infinity;
-          for (const target of targets) {
-            const rect = target.getBoundingClientRect();
-            if (rect.top <= 120 && rect.top > bestTop) {
-              bestTop = rect.top;
-              activeId = target.id;
-            }
+      }
+
+      links.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === `#${activeId}`);
+      });
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        // Each callback only delivers *changed* entries — accumulate state in a Set
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            intersecting.add(entry.target.id);
+          } else {
+            intersecting.delete(entry.target.id);
           }
         }
-        links.forEach(link => {
-          const isActive = link.getAttribute('href') === `#${activeId}`;
-          link.classList.toggle('active', isActive);
-        });
+        updateActive();
       },
-      { rootMargin: '-80px 0px -60% 0px', threshold: 0 }
+      // Top offset matches the fixed topbar; bottom clipped to top 40% of viewport
+      // so only headings in the active reading zone are highlighted
+      { rootMargin: '-76px 0px -60% 0px', threshold: 0 }
     );
 
     targets.forEach(t => observer.observe(t));
+
+    // Disconnect when Astro swaps the page so the old observer doesn't leak
+    document.addEventListener('astro:before-swap', () => observer.disconnect(), { once: true });
   }
 
+  // astro:page-load fires on both first load and after each navigation — no manual readyState check needed
   document.addEventListener('astro:page-load', initToc);
-  if (document.readyState !== 'loading') initToc();
 </script>
