@@ -1,0 +1,278 @@
+---
+import { ClientRouter } from 'astro:transitions';
+import Sidebar from '../components/Sidebar.astro';
+import { getCategories } from '../data/notes';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  showProgress?: boolean;
+  hasToc?: boolean;
+}
+
+const { title, description = 'MRCEM emergency medicine study notes', showProgress = false, hasToc = false } = Astro.props;
+const categories = getCategories();
+const path = Astro.url.pathname;
+---
+
+<!doctype html>
+<html lang="en" transition:name="root" transition:animate="none">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title} · MRCEM Notes</title>
+    <meta name="description" content={description} />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚕</text></svg>" />
+    <ClientRouter fallback="swap" />
+  </head>
+  <body>
+    {showProgress && <div id="progress-bar" role="progressbar" aria-label="Reading progress" />}
+
+    <header class="topbar">
+      <button id="sidebar-toggle" class="topbar-btn" aria-label="Toggle navigation" aria-expanded="false">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+
+      <a href="/" class="topbar-brand" data-astro-prefetch>
+        <span class="topbar-brand-dot" aria-hidden="true"></span>
+        MRCEM Notes
+      </a>
+
+      <nav class="topbar-actions">
+        <button id="sidebar-collapse" class="topbar-btn" aria-label="Toggle sidebar" title="Toggle sidebar">
+          <svg id="sb-icon-open" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="2"/>
+            <line x1="9" y1="3" x2="9" y2="21"/>
+            <path d="M13 9l3 3-3 3"/>
+          </svg>
+          <svg id="sb-icon-closed" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+            <rect x="3" y="3" width="18" height="18" rx="2"/>
+            <line x1="9" y1="3" x2="9" y2="21"/>
+            <path d="M15 9l-3 3 3 3"/>
+          </svg>
+        </button>
+        <a href="/search/" class="topbar-btn" aria-label="Search">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
+          </svg>
+          <span>Search</span>
+        </a>
+        <button id="theme-toggle" class="topbar-btn" aria-label="Toggle dark mode">
+          <svg id="icon-sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          </svg>
+          <svg id="icon-moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </button>
+      </nav>
+    </header>
+
+    <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+
+    <div class:list={['layout', { 'has-toc': hasToc }]}>
+      <Sidebar categories={categories} currentPath={path} />
+      <main class="main">
+        <slot />
+      </main>
+      <slot name="toc" />
+    </div>
+
+    <!-- Lightbox dialog (shared across note pages) -->
+    <dialog id="lightbox" aria-label="Image lightbox">
+      <button id="lb-close" aria-label="Close lightbox">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+      <img id="lb-img" src="" alt="Full-size image" />
+    </dialog>
+
+    <script is:inline>
+      // Theme + sidebar state restoration (before first paint)
+      (function () {
+        const html = document.documentElement;
+        // Suppress transitions during state restoration to prevent FOUC
+        html.classList.add('no-transitions');
+
+        const stored = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (stored === 'dark' || (!stored && prefersDark)) {
+          html.classList.add('dark');
+        }
+        if (localStorage.getItem('sidebar-collapsed') === 'true') {
+          html.classList.add('body-sidebar-collapsed');
+        }
+
+        // Re-enable transitions after the next paint
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            html.classList.remove('no-transitions');
+          });
+        });
+      })();
+    </script>
+
+    <script>
+      function applyPersistedState() {
+        const html = document.documentElement;
+        const sun = document.getElementById('icon-sun');
+        const moon = document.getElementById('icon-moon');
+
+        // Theme
+        const isDark = html.classList.contains('dark');
+        if (sun && moon) {
+          sun.style.display = isDark ? 'none' : '';
+          moon.style.display = isDark ? '' : 'none';
+        }
+
+        // Sidebar collapse icon
+        const iconOpen = document.getElementById('sb-icon-open');
+        const iconClosed = document.getElementById('sb-icon-closed');
+        const collapsed = localStorage.getItem('sidebar-collapsed') === 'true';
+        if (iconOpen && iconClosed) {
+          iconOpen.style.display = collapsed ? 'none' : '';
+          iconClosed.style.display = collapsed ? '' : 'none';
+        }
+      }
+
+      function initThemeToggle() {
+        applyPersistedState();
+        const btn = document.getElementById('theme-toggle');
+        btn?.addEventListener('click', () => {
+          document.documentElement.classList.toggle('dark');
+          localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+          applyPersistedState();
+        });
+      }
+
+      function initSidebar() {
+        const toggle = document.getElementById('sidebar-toggle');
+        const sidebar = document.getElementById('sidebar');
+        const backdrop = document.getElementById('sidebar-backdrop');
+
+        function close() {
+          sidebar?.classList.remove('open');
+          backdrop?.classList.remove('open');
+          toggle?.setAttribute('aria-expanded', 'false');
+        }
+        toggle?.addEventListener('click', () => {
+          const isOpen = sidebar?.classList.contains('open');
+          if (isOpen) close();
+          else {
+            sidebar?.classList.add('open');
+            backdrop?.classList.add('open');
+            toggle.setAttribute('aria-expanded', 'true');
+          }
+        });
+        backdrop?.addEventListener('click', close);
+      }
+
+      function initSidebarCollapse() {
+        const body = document.documentElement;
+        const btn = document.getElementById('sidebar-collapse');
+        if (!btn) return;
+
+        const mql = window.matchMedia('(max-width: 768px)');
+
+        function sync() {
+          const collapsed = localStorage.getItem('sidebar-collapsed') === 'true';
+          if (collapsed && !mql.matches) {
+            body.classList.add('body-sidebar-collapsed');
+            btn.setAttribute('aria-label', 'Expand sidebar');
+            btn.setAttribute('aria-expanded', 'false');
+          } else {
+            body.classList.remove('body-sidebar-collapsed');
+            btn.setAttribute('aria-label', 'Collapse sidebar');
+            btn.setAttribute('aria-expanded', 'true');
+          }
+          applyPersistedState();
+        }
+
+        sync();
+        mql.addEventListener('change', sync);
+
+        btn.addEventListener('click', () => {
+          const willCollapse = !body.classList.contains('body-sidebar-collapsed');
+          localStorage.setItem('sidebar-collapsed', willCollapse ? 'true' : 'false');
+          sync();
+        });
+      }
+
+      function initLightbox() {
+        const dialog = document.getElementById('lightbox');
+        const img = document.getElementById('lb-img');
+        if (!dialog || !img) return;
+
+        document.querySelectorAll('a[data-fancybox], a.fancybox').forEach(a => {
+          a.addEventListener('click', e => {
+            e.preventDefault();
+            const src = a.href;
+            img.src = src;
+            dialog.showModal();
+          });
+        });
+
+        document.getElementById('lb-close')?.addEventListener('click', () => dialog.close());
+        dialog.addEventListener('click', e => { if (e.target === dialog) dialog.close(); });
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') dialog.close(); });
+      }
+
+      function initProgressBar() {
+        const bar = document.getElementById('progress-bar');
+        if (!bar) return;
+        function update() {
+          const scrolled = window.scrollY;
+          const total = document.documentElement.scrollHeight - window.innerHeight;
+          bar.style.transform = `scaleX(${total > 0 ? scrolled / total : 0})`;
+        }
+        window.addEventListener('scroll', update, { passive: true });
+        update();
+      }
+
+      function init() {
+        initThemeToggle();
+        initSidebar();
+        initSidebarCollapse();
+        initLightbox();
+        initProgressBar();
+      }
+
+      // Run on initial load and after every Astro page transition
+      document.addEventListener('astro:page-load', init);
+
+      // Restore persisted state immediately after DOM swap (suppress transitions to avoid FOUC)
+      document.addEventListener('astro:after-swap', () => {
+        const html = document.documentElement;
+        html.classList.add('no-transitions');
+
+        const stored = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (stored === 'dark' || (!stored && prefersDark)) {
+          html.classList.add('dark');
+        } else {
+          html.classList.remove('dark');
+        }
+        if (localStorage.getItem('sidebar-collapsed') === 'true') {
+          html.classList.add('body-sidebar-collapsed');
+        } else {
+          html.classList.remove('body-sidebar-collapsed');
+        }
+
+        applyPersistedState();
+
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            html.classList.remove('no-transitions');
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
