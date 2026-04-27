@@ -299,32 +299,32 @@ function processHtml(html: string): string {
     '$1$2'
   );
 
-  // Balance stray closing divs that would break Astro's DOM parsing
-  // Walk through and remove </div> tags that exceed their matching opens
+  // Balance stray closing divs that would break Astro's DOM parsing.
+  // Find indices of all unmatched </div> tags and remove only those.
   let depth = 0;
-  let out = '';
+  const unmatched: number[] = [];
   let pos = 0;
   while (pos < result.length) {
     const openIdx = result.indexOf('<div', pos);
     const closeIdx = result.indexOf('</div>', pos);
-    if (closeIdx === -1) {
-      out += result.slice(pos);
-      break;
-    }
+    if (closeIdx === -1) break;
     if (openIdx !== -1 && openIdx < closeIdx) {
-      out += result.slice(pos, openIdx + 4);
       depth++;
       pos = openIdx + 4;
     } else {
       if (depth > 0) {
-        out += result.slice(pos, closeIdx + 6);
         depth--;
+      } else {
+        unmatched.push(closeIdx);
       }
-      // else skip this unmatched </div>
       pos = closeIdx + 6;
     }
   }
-  result = out;
+  // Remove unmatched closes in reverse order so indices stay valid
+  for (let i = unmatched.length - 1; i >= 0; i--) {
+    const idx = unmatched[i];
+    result = result.slice(0, idx) + result.slice(idx + 6);
+  }
 
   // Replace CDN URLs
   result = result.replace(CDN_RE, '/images');
