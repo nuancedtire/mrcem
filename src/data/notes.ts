@@ -384,6 +384,14 @@ export function getNoteByNid(nid: string): Note | undefined {
   return _notes.find(n => n.nid === nid);
 }
 
+// Subcategory display order overrides for categories where legacy high subcategory
+// numbers would otherwise produce a clinically illogical ordering.
+// Map: categoryNum → { subcategoryNum → sort position (lower = first) }
+const SUBCATEGORY_SORT_OVERRIDE: Record<number, Record<number, number>> = {
+  3: { 9326: 1, 300: 2, 100: 3, 4059: 4, 200: 5 }, // Pharmacology: Cardiovascular → GI → Neuropsych → Antimicrobials → Endocrine
+  4: { 7650: 1, 8423: 2, 300: 3, 200: 4, 100: 5 }, // Microbiology: Bacteriology → Virology → Clinical → Immunology → Parasitology
+};
+
 export function getCategories(): Category[] {
   const catMap = new Map<number, Category>();
   for (const note of _notes) {
@@ -407,10 +415,20 @@ export function getCategories(): Category[] {
       sub.count++;
     }
   }
-  return [...catMap.values()].sort((a, b) => a.num - b.num).map(cat => ({
-    ...cat,
-    subcategories: cat.subcategories.sort((a, b) => a.num - b.num),
-  }));
+  return [...catMap.values()].sort((a, b) => a.num - b.num).map(cat => {
+    const overrides = SUBCATEGORY_SORT_OVERRIDE[cat.num];
+    return {
+      ...cat,
+      subcategories: cat.subcategories.sort((a, b) => {
+        if (overrides) {
+          const posA = overrides[a.num] ?? 999;
+          const posB = overrides[b.num] ?? 999;
+          return posA - posB;
+        }
+        return a.num - b.num;
+      }),
+    };
+  });
 }
 
 export function getNotesByCategory(categorySlug: string, subcategorySlug?: string): Note[] {

@@ -87,58 +87,52 @@ const IconChevronDown = `<svg xmlns="http://www.w3.org/2000/svg" width="14" heig
 </nav>
 
 <script>
-  (function() {
+  let openCats: string[] = [];
+  let accordionCtrl = new AbortController();
+
+  const isActivePath = (href: string) => {
+    const path = location.pathname;
+    return path === href || path.startsWith(href + '/');
+  };
+
+  function initAccordion() {
+    accordionCtrl.abort();
+    accordionCtrl = new AbortController();
+    const signal = accordionCtrl.signal;
+
     const sidebar = document.getElementById('sidebar');
     if (!sidebar) return;
 
-    // —— Accordion ——
-    let openCats: string[] = [];
     try {
       const stored = localStorage.getItem('sidebar-open-cats');
       if (stored) openCats = JSON.parse(stored);
     } catch {}
 
-    const isActivePath = (href: string) => {
-      const path = location.pathname;
-      return path === href || path.startsWith(href + '/');
-    };
+    sidebar.querySelectorAll<HTMLButtonElement>('.sidebar-toggle').forEach(btn => {
+      const section = btn.closest('.sidebar-section');
+      const slug = section?.getAttribute('data-cat-slug');
+      const sublist = btn.nextElementSibling as HTMLElement | null;
+      if (!slug || !sublist) return;
 
-    function initAccordion() {
-      sidebar!.querySelectorAll<HTMLButtonElement>('.sidebar-toggle').forEach(btn => {
-        const section = btn.closest('.sidebar-section');
-        const slug = section?.getAttribute('data-cat-slug');
-        const sublist = btn.nextElementSibling as HTMLElement | null;
-        if (!slug || !sublist) return;
+      const shouldOpen = openCats.includes(slug) || isActivePath('/' + slug);
+      sublist.classList.toggle('open', shouldOpen);
+      btn.setAttribute('aria-expanded', String(shouldOpen));
+      btn.classList.toggle('expanded', shouldOpen);
 
-        const active = isActivePath('/' + slug);
-        const shouldOpen = openCats.includes(slug) || active;
+      btn.addEventListener('click', () => {
+        const currentlyOpen = sublist.classList.contains('open');
+        sublist.classList.toggle('open', !currentlyOpen);
+        btn.setAttribute('aria-expanded', String(!currentlyOpen));
+        btn.classList.toggle('expanded', !currentlyOpen);
+        if (currentlyOpen) {
+          openCats = openCats.filter(s => s !== slug);
+        } else if (!openCats.includes(slug)) {
+          openCats.push(slug);
+        }
+        localStorage.setItem('sidebar-open-cats', JSON.stringify(openCats));
+      }, { signal });
+    });
+  }
 
-        sublist.classList.toggle('open', shouldOpen);
-        btn.setAttribute('aria-expanded', String(shouldOpen));
-        btn.classList.toggle('expanded', shouldOpen);
-
-        // Remove any stale listener by replacing the button
-        const freshBtn = btn.cloneNode(true) as HTMLButtonElement;
-        btn.parentNode!.replaceChild(freshBtn, btn);
-
-        freshBtn.addEventListener('click', () => {
-          const currentlyOpen = sublist.classList.contains('open');
-          if (currentlyOpen) {
-            sublist.classList.remove('open');
-            freshBtn.setAttribute('aria-expanded', 'false');
-            freshBtn.classList.remove('expanded');
-            openCats = openCats.filter(s => s !== slug);
-          } else {
-            sublist.classList.add('open');
-            freshBtn.setAttribute('aria-expanded', 'true');
-            freshBtn.classList.add('expanded');
-            if (!openCats.includes(slug)) openCats.push(slug);
-          }
-          localStorage.setItem('sidebar-open-cats', JSON.stringify(openCats));
-        });
-      });
-    }
-
-    initAccordion();
-  })();
+  document.addEventListener('astro:page-load', initAccordion);
 </script>
