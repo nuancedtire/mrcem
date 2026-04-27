@@ -4,6 +4,7 @@ dist/
 *.log
 .DS_Store
 public/images/
+.env
 
 # wrangler files
 .wrangler
