@@ -124,22 +124,55 @@ const path = Astro.url.pathname;
         const toggle = document.getElementById('sidebar-toggle');
         const sidebar = document.getElementById('sidebar');
         const backdrop = document.getElementById('sidebar-backdrop');
+        const html = document.documentElement;
+        const mql = window.matchMedia('(max-width: 768px)');
 
-        function close() {
+        function isMobile() { return mql.matches; }
+
+        function closeMobile() {
           sidebar?.classList.remove('open');
           backdrop?.classList.remove('open');
           toggle?.setAttribute('aria-expanded', 'false');
         }
+
+        function openMobile() {
+          sidebar?.classList.add('open');
+          backdrop?.classList.add('open');
+          toggle?.setAttribute('aria-expanded', 'true');
+        }
+
+        function isCollapsed() {
+          return html.classList.contains('body-sidebar-collapsed');
+        }
+
+        function expandDesktop() {
+          html.classList.remove('body-sidebar-collapsed');
+          localStorage.setItem('sidebar-collapsed', 'false');
+        }
+
+        function collapseDesktop() {
+          html.classList.add('body-sidebar-collapsed');
+          localStorage.setItem('sidebar-collapsed', 'true');
+        }
+
         toggle?.addEventListener('click', () => {
-          const isOpen = sidebar?.classList.contains('open');
-          if (isOpen) close();
-          else {
-            sidebar?.classList.add('open');
-            backdrop?.classList.add('open');
-            toggle.setAttribute('aria-expanded', 'true');
+          if (isMobile()) {
+            // Mobile: overlay mode
+            if (sidebar?.classList.contains('open')) closeMobile();
+            else openMobile();
+          } else {
+            // Desktop: collapse/expand mode
+            if (isCollapsed()) expandDesktop();
+            else collapseDesktop();
           }
         });
-        backdrop?.addEventListener('click', close);
+
+        backdrop?.addEventListener('click', closeMobile);
+
+        // Auto-close mobile overlay on resize to desktop
+        mql.addEventListener('change', (e) => {
+          if (!e.matches) closeMobile();
+        });
       }
 
       function initLightbox() {
