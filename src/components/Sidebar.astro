@@ -11,10 +11,27 @@ const { categories, currentPath } = Astro.props;
 function isActive(href: string) {
   return currentPath === href || currentPath.startsWith(href + '/');
 }
+
+// Lucide icons as inline SVGs
+const IconChevronDown = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>`;
+const IconPanelLeftOpen = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/><path d="m14 9 3 3-3 3"/></svg>`;
+const IconPanelLeftClose = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/><path d="m16 15-3-3 3-3"/></svg>`;
 ---
 
 <nav id="sidebar" class="sidebar" aria-label="Main navigation">
-  <p class="sidebar-heading">Categories</p>
+  <div class="sidebar-header">
+    <p class="sidebar-heading">Categories</p>
+    <button
+      type="button"
+      id="sidebar-collapse-btn"
+      class="sidebar-collapse-btn"
+      aria-label="Collapse sidebar"
+      title="Collapse sidebar"
+    >
+      <span id="sb-icon-open" set:html={IconPanelLeftOpen} />
+      <span id="sb-icon-closed" set:html={IconPanelLeftClose} style="display:none" />
+    </button>
+  </div>
 
   {categories.map(cat => {
     const catActive = isActive(`/${cat.slug}`);
@@ -24,15 +41,13 @@ function isActive(href: string) {
         {hasSubs ? (
           <button
             type="button"
-            class:list={['sidebar-cat sidebar-toggle', { active: catActive }]}
+            class:list={['sidebar-cat', 'sidebar-toggle', { active: catActive }]}
             aria-expanded={catActive ? 'true' : 'false'}
             aria-controls={`sublist-${cat.slug}`}
           >
             <span class="sidebar-cat-label">
-              <svg class="sidebar-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <polyline points="6 9 12 15 18 9" />
-              </svg>
-              {cat.name}
+              <span class="sidebar-chevron" aria-hidden="true" set:html={IconChevronDown} />
+              <span class="sidebar-cat-text">{cat.name}</span>
             </span>
             <span class="sidebar-count">{cat.count}</span>
           </button>
@@ -42,19 +57,16 @@ function isActive(href: string) {
             class:list={['sidebar-cat', { active: catActive }]}
           >
             <span class="sidebar-cat-label">
-              {cat.name}
+              <span class="sidebar-chevron-placeholder" />
+              <span class="sidebar-cat-text">{cat.name}</span>
             </span>
             <span class="sidebar-count">{cat.count}</span>
           </a>
         )}
 
         {hasSubs && (
-          <div
-            id={`sublist-${cat.slug}`}
-            class:list={['sidebar-sublist', { open: catActive }]}
-            style={catActive ? '' : 'height: 0px;'}
-          >
-            <div class="sidebar-sublist-content">
+          <div id={`sublist-${cat.slug}`} class:list={['sidebar-sublist', { open: catActive }]}>
+            <div class="sidebar-sublist-inner">
               {cat.subcategories.map(sub => (
                 <a
                   href={`/${cat.slug}/${sub.slug}/`}
@@ -76,95 +88,94 @@ function isActive(href: string) {
   <div class="sidebar-section">
     <a href="/search/" class:list={['sidebar-cat', { active: currentPath === '/search/' }]}>
       <span class="sidebar-cat-label">
-        Search
+        <span class="sidebar-chevron-placeholder" />
+        <span class="sidebar-cat-text">Search</span>
       </span>
     </a>
   </div>
 </nav>
 
-<script is:inline>
-  (function () {
-    const SIDEBAR_OPEN_KEY = 'sidebar-open-cats';
+<script>
+  (function() {
+    const sidebar = document.getElementById('sidebar');
+    if (!sidebar) return;
 
-    function getOpenCats() {
-      try {
-        const raw = localStorage.getItem(SIDEBAR_OPEN_KEY);
-        return raw ? JSON.parse(raw) : [];
-      } catch {
-        return [];
-      }
-    }
+    // ── Accordion ──
+    let openCats: string[] = [];
+    try {
+      const stored = localStorage.getItem('sidebar-open-cats');
+      if (stored) openCats = JSON.parse(stored);
+    } catch {}
 
-    function setOpenCats(cats) {
-      try {
-        localStorage.setItem(SIDEBAR_OPEN_KEY, JSON.stringify(cats));
-      } catch {}
-    }
-
-    function isPathActive(href) {
-      var path = location.pathname;
+    const isActivePath = (href: string) => {
+      const path = location.pathname;
       return path === href || path.startsWith(href + '/');
-    }
+    };
 
-    function toggleSection(btn, sublist, slug, shouldOpen) {
-      if (shouldOpen) {
-        sublist.style.height = sublist.scrollHeight + 'px';
-        btn.setAttribute('aria-expanded', 'true');
-        btn.classList.add('expanded');
-      } else {
-        sublist.style.height = '0px';
-        btn.setAttribute('aria-expanded', 'false');
-        btn.classList.remove('expanded');
-      }
-    }
+    function initAccordion() {
+      sidebar!.querySelectorAll<HTMLButtonElement>('.sidebar-toggle').forEach(btn => {
+        const section = btn.closest('.sidebar-section');
+        const slug = section?.getAttribute('data-cat-slug');
+        const sublist = btn.nextElementSibling as HTMLElement | null;
+        if (!slug || !sublist) return;
 
-    function init() {
-      var sidebar = document.getElementById('sidebar');
-      if (!sidebar) return;
+        const active = isActivePath('/' + slug);
+        const shouldOpen = openCats.includes(slug) || active;
 
-      var openCats = getOpenCats();
-      var toggles = sidebar.querySelectorAll('.sidebar-toggle');
+        sublist.classList.toggle('open', shouldOpen);
+        btn.setAttribute('aria-expanded', String(shouldOpen));
+        btn.classList.toggle('expanded', shouldOpen);
 
-      toggles.forEach(function (btn) {
-        var section = btn.closest('.sidebar-section');
-        if (!section) return;
-        var slug = section.getAttribute('data-cat-slug');
-        var sublist = document.getElementById('sublist-' + slug);
-        if (!sublist || !slug) return;
+        // Remove any stale listener by replacing the button
+        const freshBtn = btn.cloneNode(true) as HTMLButtonElement;
+        btn.parentNode!.replaceChild(freshBtn, btn);
 
-        var active = isPathActive('/' + slug);
-        var shouldOpen = active || openCats.indexOf(slug) !== -1;
-
-        // Set initial state (no transition for first paint)
-        sublist.style.transition = 'none';
-        toggleSection(btn, sublist, slug, shouldOpen);
-
-        // Re-enable transition after paint
-        requestAnimationFrame(function () {
-          requestAnimationFrame(function () {
-            sublist.style.transition = '';
-          });
-        });
-
-        // Click handler
-        btn.addEventListener('click', function () {
-          var isOpen = btn.getAttribute('aria-expanded') === 'true';
-          toggleSection(btn, sublist, slug, !isOpen);
-
-          if (!isOpen) {
-            if (openCats.indexOf(slug) === -1) openCats.push(slug);
+        freshBtn.addEventListener('click', () => {
+          const currentlyOpen = sublist.classList.contains('open');
+          if (currentlyOpen) {
+            sublist.classList.remove('open');
+            freshBtn.setAttribute('aria-expanded', 'false');
+            freshBtn.classList.remove('expanded');
+            openCats = openCats.filter(s => s !== slug);
           } else {
-            openCats = openCats.filter(function (s) { return s !== slug; });
+            sublist.classList.add('open');
+            freshBtn.setAttribute('aria-expanded', 'true');
+            freshBtn.classList.add('expanded');
+            if (!openCats.includes(slug)) openCats.push(slug);
           }
-          setOpenCats(openCats);
+          localStorage.setItem('sidebar-open-cats', JSON.stringify(openCats));
         });
       });
     }
 
-    // Run on every Astro page transition + initial load
-    document.addEventListener('astro:page-load', init);
-    if (document.readyState !== 'loading') {
-      init();
+    initAccordion();
+    document.addEventListener('astro:page-load', initAccordion);
+
+    // ── Collapse toggle (inside sidebar) ──
+    const collapseBtn = document.getElementById('sidebar-collapse-btn');
+    if (collapseBtn) {
+      collapseBtn.addEventListener('click', () => {
+        const html = document.documentElement;
+        const willCollapse = !html.classList.contains('body-sidebar-collapsed');
+        html.classList.toggle('body-sidebar-collapsed', willCollapse);
+        localStorage.setItem('sidebar-collapsed', willCollapse ? 'true' : 'false');
+        updateCollapseIcon();
+      });
     }
+
+    function updateCollapseIcon() {
+      const collapsed = document.documentElement.classList.contains('body-sidebar-collapsed');
+      const openIcon = document.getElementById('sb-icon-open');
+      const closedIcon = document.getElementById('sb-icon-closed');
+      if (openIcon) openIcon.style.display = collapsed ? 'none' : '';
+      if (closedIcon) closedIcon.style.display = collapsed ? '' : 'none';
+      if (collapseBtn) {
+        collapseBtn.setAttribute('aria-label', collapsed ? 'Expand sidebar' : 'Collapse sidebar');
+        collapseBtn.setAttribute('title', collapsed ? 'Expand sidebar' : 'Collapse sidebar');
+      }
+    }
+
+    updateCollapseIcon();
+    document.addEventListener('astro:after-swap', updateCollapseIcon);
   })();
 </script>
