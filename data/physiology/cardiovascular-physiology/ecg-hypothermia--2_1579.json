@@ -4,5 +4,11 @@
   "body_html": "<div>The following ECG changes may be seen in hypothermia<br /><ul><li>bradycardia</li><li>'J' wave - small hump at the end of the QRS complex</li><li>first degree heart block</li><li>long QT interval</li><li>atrial and ventricular arrhythmias</li></ul></div>\n\n<div id=\"mybodylinks\"></div>\n\n<div id=\"mybodymedia\"></div>\n\n\n<div id=\"categorynum\">2</div>\n\n<div id=\"subcategorynum\">2</div>\n\n<div id=\"categoryname\">Physiology</div>\n\n<div id=\"subcategoryname\">Cardiovascular physiology</div>\n<div id=\"mybody\">\n\n<div id=\"body_content\">\nThe following ECG changes may be seen in hypothermia<br /><ul><li>bradycardia</li><li>'J' wave - small hump at the end of the QRS complex</li><li>first degree heart block</li><li>long QT interval</li><li>atrial and ventricular arrhythmias</li></ul></div>\n\n\n<BR><BR><br><br></div>",
   "category": "2",
   "sort_order": 32,
-  "related_nids": []
+  "related_nids": [
+    "1_142",
+    "2_1256",
+    "2_2156",
+    "2_229",
+    "1_77"
+  ]
 }

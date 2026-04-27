@@ -4,5 +4,9 @@
   "body_html": "<div>The number of drugs types used for type 2 diabetes mellitus is ever expanding.<br /><ul><li>sulphonylureas</li><li>metformin</li><li>alpha-glucosidase inhibitors (acarbose)</li><li>glitazones</li><li>insulin</li></ul></div>\n\n<div id=\"mybodylinks\"></div>\n\n<div id=\"mybodymedia\"></div>\n\n\n<div id=\"categorynum\">5</div>\n\n<div id=\"subcategorynum\">500</div>\n\n<div id=\"categoryname\">Pathology</div>\n\n<div id=\"subcategoryname\">Infectious disease & immunology</div>\n<div id=\"mybody\">\n\n<div id=\"body_content\">\nThe number of drugs types used for type 2 diabetes mellitus is ever expanding.<br /><ul><li>sulphonylureas</li><li>metformin</li><li>alpha-glucosidase inhibitors (acarbose)</li><li>glitazones</li><li>insulin</li></ul></div>\n\n\n<BR><BR><br><br></div>",
   "category": "2",
   "sort_order": 57,
-  "related_nids": []
+  "related_nids": [
+    "1_2908",
+    "2_2058",
+    "1_2909"
+  ]
 }

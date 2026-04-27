@@ -4,5 +4,7 @@
   "body_html": "<div class=\"table-responsive\"><table class = \"tlarge table table-striped table-bordered\"  data-role=\"table\" id=\"tableid1\" ><thead><tr><th>Territory</th><th>Leads</th></tr></thead><tbody><tr><td>Septal</td><td>V1-V2</td></tr><tr><td>Anterior</td><td>V2-V4</td></tr><tr><td>Anteroseptal</td><td>V1-V4</td></tr><tr><td>Lateral territory</td><td>I, aVL, V5 and V6</td></tr></tbody></table></div></div>\n\n<div id=\"mybodylinks\"></div>\n\n<div id=\"mybodymedia\"></div>\n\n\n<div id=\"categorynum\">2</div>\n\n<div id=\"subcategorynum\">2</div>\n\n<div id=\"categoryname\">Physiology</div>\n\n<div id=\"subcategoryname\">Cardiovascular physiology</div>\n<div id=\"mybody\">\n\n<div id=\"body_content\">\n<div class=\"table-responsive\"><table class = \"tlarge table table-striped table-bordered\"  data-role=\"table\" id=\"tableid1\" ><thead><tr><th>Territory</th><th>Leads</th></tr></thead><tbody><tr><td>Septal</td><td>V1-V2</td></tr><tr><td>Anterior</td><td>V2-V4</td></tr><tr><td>Anteroseptal</td><td>V1-V4</td></tr><tr><td>Lateral territory</td><td>I, aVL, V5 and V6</td></tr></tbody></table></div></div>\n\n\n<BR><BR><br><br>",
   "category": "1",
   "sort_order": 20,
-  "related_nids": []
+  "related_nids": [
+    "2_229"
+  ]
 }

@@ -4,5 +4,11 @@
   "body_html": "<div>The intra-peritoneal organs are:<br /><ul><li>Liver</li><li>Spleen</li><li>Stomach</li><li>1st part of duodenum</li><li>Ileum</li><li>Jejunum</li><li>Transverse colon</li><li>Sigmoid colon </li><li>Superior rectum</li><li>Ovaries</li></ul><br />The retro-peritoneal organs/structures are:<br /><ul><li>Adrenal glands</li><li>Aorta</li><li>IVC</li><li>Duodenum (2nd, 3rd and 4th parts)</li><li>Pancreas (head)</li><li>Ureters</li><li>Colon (ascending and descending parts)</li><li>Kidneys</li><li>Oesophagus</li><li>Rectum (inferior part)</li></ul></div>\n\n<div id=\"mybodylinks\"></div>\n\n<div id=\"mybodymedia\"></div>\n\n\n<div id=\"categorynum\">1</div>\n\n<div id=\"subcategorynum\">1</div>\n\n<div id=\"categoryname\">Anatomy</div>\n\n<div id=\"subcategoryname\">Abdomen & pelvis</div>\n<div id=\"mybody\">\n\n<div id=\"body_content\">\nThe intra-peritoneal organs are:<br /><ul><li>Liver</li><li>Spleen</li><li>Stomach</li><li>1st part of duodenum</li><li>Ileum</li><li>Jejunum</li><li>Transverse colon</li><li>Sigmoid colon </li><li>Superior rectum</li><li>Ovaries</li></ul><br />The retro-peritoneal organs/structures are:<br /><ul><li>Adrenal glands</li><li>Aorta</li><li>IVC</li><li>Duodenum (2nd, 3rd and 4th parts)</li><li>Pancreas (head)</li><li>Ureters</li><li>Colon (ascending and descending parts)</li><li>Kidneys</li><li>Oesophagus</li><li>Rectum (inferior part)</li></ul></div>\n\n\n<BR><BR><br><br></div>",
   "category": "1",
   "sort_order": 19,
-  "related_nids": []
+  "related_nids": [
+    "1_51",
+    "2_525",
+    "2_406",
+    "1_2918",
+    "1_160"
+  ]
 }

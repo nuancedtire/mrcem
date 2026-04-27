@@ -3,6 +3,10 @@
   "title": "COPD: management of acute exacerbations",
   "body_html": "<div>The most common bacterial organisms that cause infective exacerbations of COPD are:<br /><ul><li><i>Haemophilus influenzae</i> (most common cause)</li><li><i>Streptococcus pneumoniae</i></li><li><i>Moraxella catarrhalis</i></li></ul><br />Respiratory viruses account for around 30% of exacerbations, with the human rhinovirus being the most important pathogen.<br /><br />NICE guidelines from 2010 recommend the following:<br /><ul><li>increase frequency of bronchodilator use and consider giving via a nebuliser</li><li>give prednisolone 30 mg daily for 7-14 days</li><li>it is common practice for all patients with an exacerbation of COPD to receive antibiotics. NICE do not support this approach. They recommend giving oral antibiotics 'if sputum is purulent or there are clinical signs of pneumonia'</li></ul></div>\n\n<div id=\"mybodylinks\"></div>\n\n<div id=\"mybodymedia\"></div>\n\n\n<div id=\"categorynum\">5</div>\n\n<div id=\"subcategorynum\">100</div>\n\n<div id=\"categoryname\">Pathology</div>\n\n<div id=\"subcategoryname\">Cardiorespiratory pathology</div>\n<div id=\"mybody\">\n\n<div id=\"body_content\">\nThe most common bacterial organisms that cause infective exacerbations of COPD are:<br /><ul><li><i>Haemophilus influenzae</i> (most common cause)</li><li><i>Streptococcus pneumoniae</i></li><li><i>Moraxella catarrhalis</i></li></ul><br />Respiratory viruses account for around 30% of exacerbations, with the human rhinovirus being the most important pathogen.<br /><br />NICE guidelines from 2010 recommend the following:<br /><ul><li>increase frequency of bronchodilator use and consider giving via a nebuliser</li><li>give prednisolone 30 mg daily for 7-14 days</li><li>it is common practice for all patients with an exacerbation of COPD to receive antibiotics. NICE do not support this approach. They recommend giving oral antibiotics 'if sputum is purulent or there are clinical signs of pneumonia'</li></ul></div>\n\n\n<BR><BR><br><br></div>",
   "category": "2",
-  "sort_order": 31,
-  "related_nids": []
+  "sort_order": 27,
+  "related_nids": [
+    "2_1536",
+    "2_1534",
+    "2_754"
+  ]
 }

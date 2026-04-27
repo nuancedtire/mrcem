@@ -4,5 +4,9 @@
   "body_html": "<div>Immunology<br /><ul><li>99% are ANA positive</li><li>20% are rheumatoid factor positive</li><li>anti-dsDNA: highly specific (> 99%), but less sensitive (70%)</li><li>anti-Smith: most specific (> 99%), sensitivity (30%)</li><li>also: anti-U1 RNP, SS-A (anti-Ro) and SS-B (anti-La)</li></ul><br />Monitoring<br /><ul><li>ESR: during active disease the CRP is characteristically normal - a raised CRP may indicate underlying infection </li><li>complement levels (C3, C4) are low during active disease (formation of complexes leads to consumption of complement)</li><li>anti-dsDNA titres can be used for disease monitoring (but note not present in all patients)</li></ul></div>\n\n<div id=\"mybodylinks\"></div>\n\n<div id=\"mybodymedia\"></div>\n\n\n<div id=\"categorynum\">5</div>\n\n<div id=\"subcategorynum\">500</div>\n\n<div id=\"categoryname\">Pathology</div>\n\n<div id=\"subcategoryname\">Infectious disease & immunology</div>\n<div id=\"mybody\">\n\n<div id=\"body_content\">\nImmunology<br /><ul><li>99% are ANA positive</li><li>20% are rheumatoid factor positive</li><li>anti-dsDNA: highly specific (> 99%), but less sensitive (70%)</li><li>anti-Smith: most specific (> 99%), sensitivity (30%)</li><li>also: anti-U1 RNP, SS-A (anti-Ro) and SS-B (anti-La)</li></ul><br />Monitoring<br /><ul><li>ESR: during active disease the CRP is characteristically normal - a raised CRP may indicate underlying infection </li><li>complement levels (C3, C4) are low during active disease (formation of complexes leads to consumption of complement)</li><li>anti-dsDNA titres can be used for disease monitoring (but note not present in all patients)</li></ul></div>\n\n\n<BR><BR><br><br></div>",
   "category": "2",
   "sort_order": 54,
-  "related_nids": []
+  "related_nids": [
+    "2_718",
+    "2_174",
+    "2_623"
+  ]
 }

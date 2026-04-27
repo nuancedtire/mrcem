@@ -4,5 +4,9 @@
   "body_html": "<div>Normal (Gaussian) distributions: mean = median = mode<br /><br />Positively skewed distribution: mean > median > mode<br /><br />Negatively skewed distribution mean < median < mode<br /><br />To remember the above note how they are in alphabetical order, think positive going forward with '>', whilst negative going backwards '<'</div>\n\n<div id=\"mybodylinks\"></div>\n\n<div id=\"mybodymedia\"></div>\n\n\n<div id=\"categorynum\">6</div>\n\n<div id=\"subcategorynum\">2</div>\n\n<div id=\"categoryname\">Evidence Based Medicine</div>\n\n<div id=\"subcategoryname\">Distributions & Descriptive Statistics</div>\n<div id=\"mybody\">\n\n<div id=\"body_content\">\nNormal (Gaussian) distributions: mean = median = mode<br /><br />Positively skewed distribution: mean > median > mode<br /><br />Negatively skewed distribution mean < median < mode<br /><br />To remember the above note how they are in alphabetical order, think positive going forward with '>', whilst negative going backwards '<'</div>\n\n\n<BR><BR><br><br></div>",
   "category": "2",
   "sort_order": 9,
-  "related_nids": []
+  "related_nids": [
+    "2_552",
+    "1_37",
+    "2_793"
+  ]
 }

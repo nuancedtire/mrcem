@@ -4,5 +4,8 @@
   "body_html": "<div>Serotonin is a monoamine neurotransmitter which regulates mood, appetite and sleep<br /><br />Levels are depleted in depression</div>\n\n<div id=\"mybodylinks\"></div>\n\n<div id=\"mybodymedia\"></div>\n\n\n<div id=\"categorynum\">2</div>\n\n<div id=\"subcategorynum\">3</div>\n\n<div id=\"categoryname\">Physiology</div>\n\n<div id=\"subcategoryname\">Endocrine physiology</div>\n<div id=\"mybody\">\n\n<div id=\"body_content\">\nSerotonin is a monoamine neurotransmitter which regulates mood, appetite and sleep<br /><br />Levels are depleted in depression</div>\n\n\n<BR><BR><br><br></div>",
   "category": "2",
   "sort_order": 28,
-  "related_nids": []
+  "related_nids": [
+    "2_1237",
+    "1_278"
+  ]
 }

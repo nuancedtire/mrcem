@@ -4,5 +4,11 @@
   "body_html": "<div>For the MRCEM exam you should be familiar with the following stains:<br /><br /><div class=\"table-responsive\"><table class = \"tlarge table table-striped table-bordered\"  data-role=\"table\" id=\"tableid1\" ><thead><tr><th>Stain</th><th>Used to detect</th><th>Specimen</th></tr></thead><tbody><tr><td>ZN (Ziehl Neelsen stain)</td><td>acid fast bacilli i.e TB</td><td>sputum</td></tr><tr><td>Giemsa</td><td>malaria</td><td>blood film</td></tr><tr><td>Gram</td><td>Various bacteria</td><td>Blood/sputum/CSF/others</td></tr></tbody></table></div> <br /><br />Although knowledge of the above is expected this doesn't mean that they are gold standard tests. Malaria for example should be diagnosed following multiple blood films (usually 3 sets within 36 hours and often examined under flurescent microscope) whilst TB should have formal cultures.</div>\n\n<div id=\"mybodylinks\"></div>\n\n<div id=\"mybodymedia\"></div>\n\n\n<div id=\"categorynum\">4</div>\n\n<div id=\"subcategorynum\">100</div>\n\n<div id=\"categoryname\">Microbiology</div>\n\n<div id=\"subcategoryname\">Parasitology & STIs</div>\n<div id=\"mybody\">\n\n<div id=\"body_content\">\nFor the MRCEM exam you should be familiar with the following stains:<br /><br /><div class=\"table-responsive\"><table class = \"tlarge table table-striped table-bordered\"  data-role=\"table\" id=\"tableid1\" ><thead><tr><th>Stain</th><th>Used to detect</th><th>Specimen</th></tr></thead><tbody><tr><td>ZN (Ziehl Neelsen stain)</td><td>acid fast bacilli i.e TB</td><td>sputum</td></tr><tr><td>Giemsa</td><td>malaria</td><td>blood film</td></tr><tr><td>Gram</td><td>Various bacteria</td><td>Blood/sputum/CSF/others</td></tr></tbody></table></div> <br /><br />Although knowledge of the above is expected this doesn't mean that they are gold standard tests. Malaria for example should be diagnosed following multiple blood films (usually 3 sets within 36 hours and often examined under flurescent microscope) whilst TB should have formal cultures.</div>\n\n\n<BR><BR><br><br></div>",
   "category": "1",
   "sort_order": 4,
-  "related_nids": []
+  "related_nids": [
+    "2_2307",
+    "1_1938",
+    "1_199",
+    "2_1582",
+    "2_856"
+  ]
 }

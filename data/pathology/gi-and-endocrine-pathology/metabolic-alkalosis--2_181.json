@@ -3,6 +3,12 @@
   "title": "Metabolic alkalosis",
   "body_html": "<div>Metabolic alkalosis may be caused by a loss of hydrogen ions or a gain of bicarbonate. It is due mainly to problems of the kidney or gastrointestinal tract<br /><br />Causes<br /><ul><li>vomiting / aspiration (e.g. peptic ulcer leading to pyloric stenos, nasogastric suction)</li><li>diuretics</li><li>liquorice, carbenoxolone</li><li>hypokalaemia</li><li>primary hyperaldosteronism</li><li>Cushing's syndrome</li><li>Bartter's syndrome</li><li>congenital adrenal hyperplasia</li></ul><br />Mechanism of metabolic alkalosis<br /><ul><li>activation of renin-angiotensin II-aldosterone (RAA) system is a key factor</li><li>aldosterone causes reabsorption of Na<sup>+</sup> in exchange for H+ in the distal convoluted tubule</li><li>ECF depletion (vomiting, diuretics) &rarr; Na<sup>+</sup> and Cl- loss &rarr; activation of RAA system &rarr; raised aldosterone levels</li><li>in hypokalaemia, K<sup>+</sup> shift from cells &rarr; ECF, alkalosis is caused by shift of H+ into cells to maintain neutrality</li></ul></div>\n\n<div id=\"mybodylinks\"></div>\n\n<div id=\"mybodymedia\"></div>\n\n\n<div id=\"categorynum\">5</div>\n\n<div id=\"subcategorynum\">200</div>\n\n<div id=\"categoryname\">Pathology</div>\n\n<div id=\"subcategoryname\">GI & endocrine pathology</div>\n<div id=\"mybody\">\n\n<div id=\"body_content\">\nMetabolic alkalosis may be caused by a loss of hydrogen ions or a gain of bicarbonate. It is due mainly to problems of the kidney or gastrointestinal tract<br /><br />Causes<br /><ul><li>vomiting / aspiration (e.g. peptic ulcer leading to pyloric stenos, nasogastric suction)</li><li>diuretics</li><li>liquorice, carbenoxolone</li><li>hypokalaemia</li><li>primary hyperaldosteronism</li><li>Cushing's syndrome</li><li>Bartter's syndrome</li><li>congenital adrenal hyperplasia</li></ul><br />Mechanism of metabolic alkalosis<br /><ul><li>activation of renin-angiotensin II-aldosterone (RAA) system is a key factor</li><li>aldosterone causes reabsorption of Na<sup>+</sup> in exchange for H+ in the distal convoluted tubule</li><li>ECF depletion (vomiting, diuretics) &rarr; Na<sup>+</sup> and Cl- loss &rarr; activation of RAA system &rarr; raised aldosterone levels</li><li>in hypokalaemia, K<sup>+</sup> shift from cells &rarr; ECF, alkalosis is caused by shift of H+ into cells to maintain neutrality</li></ul></div>\n\n\n<BR><BR><br><br></div>",
   "category": "2",
-  "sort_order": 50,
-  "related_nids": []
+  "sort_order": 51,
+  "related_nids": [
+    "2_620",
+    "2_2131",
+    "2_460",
+    "2_765",
+    "2_1151"
+  ]
 }

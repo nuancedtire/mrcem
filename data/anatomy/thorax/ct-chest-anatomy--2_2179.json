@@ -4,5 +4,11 @@
   "body_html": "<div>The labelled CT chest shown below identifies the most common structures tested in exams:<br /><br /><div class=\"text-center\"><table><tr><td align = 'left' colspan='2'><a data-fancybox class='fancybox' rel='group' href='https://d20g8jnrcgqmxh.cloudfront.net/images_MRCEMnotes/xrb080b.jpg'><img class='ajaximage' src='https://d20g8jnrcgqmxh.cloudfront.net/images_MRCEMnotes/xrb080.jpg'/></a></td></tr><tr><td valign='top' align='left'><span style = 'font-size:11px; color:LightGray;'>&copy; Image used on license from </span><a href='http://www.radiopaedia.org/'  target='_blank' style = 'font-size:11px; color:LightGray;' >Radiopaedia</a></td><td align='right'><a data-fancybox class='fancybox lbmagglasslink' rel='group' href='https://d20g8jnrcgqmxh.cloudfront.net/images_MRCEMnotes/xrb080b.jpg'><img src='https://d20g8jnrcgqmxh.cloudfront.net/css/images/mag_glass.png'/></a></td></tr></table></div></div>\n\n<div id=\"mybodylinks\"></div>\n\n<div id=\"mybodymedia\"></div>\n\n\n<div id=\"categorynum\">1</div>\n\n<div id=\"subcategorynum\">5</div>\n\n<div id=\"categoryname\">Anatomy</div>\n\n<div id=\"subcategoryname\">Thorax</div>\n<div id=\"mybody\">\n\n<div id=\"body_content\">\nThe labelled CT chest shown below identifies the most common structures tested in exams:<br /><br /><div class=\"text-center\"><table><tr><td align = 'left' colspan='2'><a data-fancybox class='fancybox' rel='group' href='https://d20g8jnrcgqmxh.cloudfront.net/images_MRCEMnotes/xrb080b.jpg'><img class='ajaximage' src='https://d20g8jnrcgqmxh.cloudfront.net/images_MRCEMnotes/xrb080.jpg'/></a></td></tr><tr><td valign='top' align='left'><span style = 'font-size:11px; color:LightGray;'>&copy; Image used on license from </span><a href='http://www.radiopaedia.org/'  target='_blank' style = 'font-size:11px; color:LightGray;' >Radiopaedia</a></td><td align='right'><a data-fancybox class='fancybox lbmagglasslink' rel='group' href='https://d20g8jnrcgqmxh.cloudfront.net/images_MRCEMnotes/xrb080b.jpg'><img src='https://d20g8jnrcgqmxh.cloudfront.net/css/images/mag_glass.png'/></a></td></tr></table></div></div>\n\n\n<BR><BR><br><br></div>",
   "category": "2",
   "sort_order": 19,
-  "related_nids": []
+  "related_nids": [
+    "1_2635",
+    "1_171",
+    "2_482",
+    "1_172",
+    "1_91"
+  ]
 }

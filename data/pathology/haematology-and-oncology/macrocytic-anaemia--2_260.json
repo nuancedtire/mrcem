@@ -4,5 +4,11 @@
   "body_html": "<div>Macrocytic anaemia can be divided into causes associated with a megaloblastic bone marrow and those with a normoblastic bone marrow<br /><br /><div class=\"table-responsive\"><table class = \"tlarge table table-striped table-bordered\"  data-role=\"table\" id=\"tableid1\" ><thead><tr><th><b>Megaloblastic causes</b></th><th><b>Normoblastic causes</b></th></tr></thead><tbody><tr><td><ul><li>vitamin B12 deficiency</li><li>folate deficiency</li></ul></td><td><ul><li>alcohol</li><li>liver disease</li><li>hypothyroidism</li><li>pregnancy</li><li>reticulocytosis</li><li>myelodysplasia</li><li>drugs: cytotoxics</td></tr></tbody></table></div></li></ul></div>\n\n<div id=\"mybodylinks\"></div>\n\n<div id=\"mybodymedia\"></div>\n\n\n<div id=\"categorynum\">5</div>\n\n<div id=\"subcategorynum\">7185</div>\n\n<div id=\"categoryname\">Pathology</div>\n\n<div id=\"subcategoryname\">Haematology & oncology</div>\n<div id=\"mybody\">\n\n<div id=\"body_content\">\nMacrocytic anaemia can be divided into causes associated with a megaloblastic bone marrow and those with a normoblastic bone marrow<br /><br /><div class=\"table-responsive\"><table class = \"tlarge table table-striped table-bordered\"  data-role=\"table\" id=\"tableid1\" ><thead><tr><th><b>Megaloblastic causes</b></th><th><b>Normoblastic causes</b></th></tr></thead><tbody><tr><td><ul><li>vitamin B12 deficiency</li><li>folate deficiency</li></ul></td><td><ul><li>alcohol</li><li>liver disease</li><li>hypothyroidism</li><li>pregnancy</li><li>reticulocytosis</li><li>myelodysplasia</li><li>drugs: cytotoxics</td></tr></tbody></table></div></li></ul></div>\n\n\n<BR><BR><br><br></div>",
   "category": "2",
   "sort_order": 38,
-  "related_nids": []
+  "related_nids": [
+    "1_2625",
+    "1_25",
+    "1_36",
+    "1_2741",
+    "1_24"
+  ]
 }

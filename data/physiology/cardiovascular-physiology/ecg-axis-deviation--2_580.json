@@ -4,5 +4,11 @@
   "body_html": "<div>Causes of left axis deviation (LAD)<br /><ul><li>left anterior hemiblock</li><li>left bundle branch block</li><li>Wolff-Parkinson-White syndrome* - right-sided accessory pathway </li><li>hyperkalaemia</li><li>congenital: ostium primum ASD, tricuspid atresia</li><li>minor LAD in obese people</li></ul><br />Causes of right axis deviation (RAD)<br /><ul><li>right ventricular hypertrophy</li><li>left posterior hemiblock</li><li>chronic lung disease &rarr; cor pulmonale</li><li>pulmonary embolism</li><li>ostium secundum ASD</li><li>Wolff-Parkinson-White syndrome* - left-sided accessory pathway </li><li>normal in infant < 1 years old</li><li>minor RAD in tall people</li></ul><br />*in the majority of cases, or in a question without qualification, Wolff-Parkinson-White syndrome is associated with left axis deviation</div>\n\n<div id=\"mybodylinks\"></div>\n\n<div id=\"mybodymedia\"></div>\n\n\n<div id=\"categorynum\">2</div>\n\n<div id=\"subcategorynum\">2</div>\n\n<div id=\"categoryname\">Physiology</div>\n\n<div id=\"subcategoryname\">Cardiovascular physiology</div>\n<div id=\"mybody\">\n\n<div id=\"body_content\">\nCauses of left axis deviation (LAD)<br /><ul><li>left anterior hemiblock</li><li>left bundle branch block</li><li>Wolff-Parkinson-White syndrome* - right-sided accessory pathway </li><li>hyperkalaemia</li><li>congenital: ostium primum ASD, tricuspid atresia</li><li>minor LAD in obese people</li></ul><br />Causes of right axis deviation (RAD)<br /><ul><li>right ventricular hypertrophy</li><li>left posterior hemiblock</li><li>chronic lung disease &rarr; cor pulmonale</li><li>pulmonary embolism</li><li>ostium secundum ASD</li><li>Wolff-Parkinson-White syndrome* - left-sided accessory pathway </li><li>normal in infant < 1 years old</li><li>minor RAD in tall people</li></ul><br />*in the majority of cases, or in a question without qualification, Wolff-Parkinson-White syndrome is associated with left axis deviation</div>\n\n\n<BR><BR><br><br></div>",
   "category": "2",
   "sort_order": 29,
-  "related_nids": []
+  "related_nids": [
+    "1_312",
+    "1_2906",
+    "1_29",
+    "2_2156",
+    "1_77"
+  ]
 }

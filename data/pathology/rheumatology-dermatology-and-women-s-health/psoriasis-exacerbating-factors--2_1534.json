@@ -4,5 +4,11 @@
   "body_html": "<div>The following factors may exacerbate psoriasis:<br /><ul><li>trauma</li><li>alcohol</li><li>drugs: beta blockers, lithium, antimalarials (chloroquine and hydroxychloroquine), NSAIDs and ACE inhibitors, infliximab</li><li>withdrawal of systemic steroids</li></ul></div>\n\n<div id=\"mybodylinks\"></div>\n\n<div id=\"mybodymedia\"></div>\n\n\n<div id=\"categorynum\">5</div>\n\n<div id=\"subcategorynum\">400</div>\n\n<div id=\"categoryname\">Pathology</div>\n\n<div id=\"subcategoryname\">Rheumatology, dermatology & women's health</div>\n<div id=\"mybody\">\n\n<div id=\"body_content\">\nThe following factors may exacerbate psoriasis:<br /><ul><li>trauma</li><li>alcohol</li><li>drugs: beta blockers, lithium, antimalarials (chloroquine and hydroxychloroquine), NSAIDs and ACE inhibitors, infliximab</li><li>withdrawal of systemic steroids</li></ul></div>\n\n\n<BR><BR><br><br></div>",
   "category": "2",
   "sort_order": 48,
-  "related_nids": []
+  "related_nids": [
+    "2_829",
+    "2_230",
+    "2_250",
+    "2_1212",
+    "2_324"
+  ]
 }

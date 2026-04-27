@@ -3,6 +3,12 @@
   "title": "Neuroblastoma",
   "body_html": "<div>Neuroblastoma is one of the top five causes of cancer in children, accounting for around 7-8% of childhood malignancies. The tumour arises from neural crest tissue of the adrenal medulla (the most common site) and sympathetic nervous system.<br /><br />Median age of onset is around 20 months<br /><br />Features<br /><ul><li>abdominal mass</li><li>pallor, weight loss</li><li>bone pain, limp</li><li>hepatomegaly</li><li>paraplegia</li><li>proptosis</li></ul><br />Investigation<br /><ul><li>raised urinary vanillylmandelic acid (VMA) and homovanillic acid (HVA) levels</li><li>calcification may be seen on abdominal x-ray</li><li>biopsy</li></ul></div>\n\n<div id=\"mybodylinks\"></div>\n\n<div id=\"mybodymedia\"></div>\n\n\n<div id=\"categorynum\">5</div>\n\n<div id=\"subcategorynum\">300</div>\n\n<div id=\"categoryname\">Pathology</div>\n\n<div id=\"subcategoryname\">Neurology & neurosurgery</div>\n<div id=\"mybody\">\n\n<div id=\"body_content\">\nNeuroblastoma is one of the top five causes of cancer in children, accounting for around 7-8% of childhood malignancies. The tumour arises from neural crest tissue of the adrenal medulla (the most common site) and sympathetic nervous system.<br /><br />Median age of onset is around 20 months<br /><br />Features<br /><ul><li>abdominal mass</li><li>pallor, weight loss</li><li>bone pain, limp</li><li>hepatomegaly</li><li>paraplegia</li><li>proptosis</li></ul><br />Investigation<br /><ul><li>raised urinary vanillylmandelic acid (VMA) and homovanillic acid (HVA) levels</li><li>calcification may be seen on abdominal x-ray</li><li>biopsy</li></ul></div>\n\n\n<BR><BR><br><br></div>",
   "category": "2",
-  "sort_order": 47,
-  "related_nids": []
+  "sort_order": 46,
+  "related_nids": [
+    "1_53",
+    "2_370",
+    "2_2080",
+    "1_54",
+    "2_2155"
+  ]
 }

@@ -4,5 +4,11 @@
   "body_html": "<div>Causes of normocytic anaemia include<br /><ul><li>anaemia of chronic disease</li><li>chronic kidney disease</li><li>aplastic anaemia</li><li>haemolytic anaemia</li></ul></div>\n\n<div id=\"mybodylinks\"></div>\n\n<div id=\"mybodymedia\"></div>\n\n\n<div id=\"categorynum\">5</div>\n\n<div id=\"subcategorynum\">7185</div>\n\n<div id=\"categoryname\">Pathology</div>\n\n<div id=\"subcategoryname\">Haematology & oncology</div>\n<div id=\"mybody\">\n\n<div id=\"body_content\">\nCauses of normocytic anaemia include<br /><ul><li>anaemia of chronic disease</li><li>chronic kidney disease</li><li>aplastic anaemia</li><li>haemolytic anaemia</li></ul></div>\n\n\n<BR><BR><br><br></div>",
   "category": "2",
   "sort_order": 42,
-  "related_nids": []
+  "related_nids": [
+    "1_2625",
+    "1_25",
+    "1_36",
+    "1_24",
+    "1_173"
+  ]
 }

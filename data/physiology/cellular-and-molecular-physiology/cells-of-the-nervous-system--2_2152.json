@@ -4,5 +4,11 @@
   "body_html": "<div class=\"table-responsive\"><table class = \"tlarge table table-striped table-bordered\"  data-role=\"table\" id=\"tableid1\" ><thead><tr><th><b>Cell type</b></th><th><b>Notes</b></th></tr></thead><tbody><tr><td>Oligodendroglia</td><td>Produce myelin in the CNS<br />Affected in multiple sclerosis</td></tr><tr><td>Schwann cells</td><td>Produce myelin in the PNS<br />Affected in Guillain-Barre syndrome<br />Cell type of acoustic neuromas</td></tr><tr><td>Astrocytes</td><td>Provides physical support<br />Removes excess potassium ions<br />Help form the blood-brain barrier<br />Physical repair</td></tr><tr><td>Microglia</td><td>Specialised CNS phagocytes</td></tr><tr><td>Ependymal cells</td><td>Provide the inner lining of the ventricles</td></tr></tbody></table></div></div>\n\n<div id=\"mybodylinks\"></div>\n\n<div id=\"mybodymedia\"></div>\n\n\n<div id=\"categorynum\">2</div>\n\n<div id=\"subcategorynum\">1</div>\n\n<div id=\"categoryname\">Physiology</div>\n\n<div id=\"subcategoryname\">Cellular & molecular physiology</div>\n<div id=\"mybody\">\n\n<div id=\"body_content\">\n<div class=\"table-responsive\"><table class = \"tlarge table table-striped table-bordered\"  data-role=\"table\" id=\"tableid1\" ><thead><tr><th><b>Cell type</b></th><th><b>Notes</b></th></tr></thead><tbody><tr><td>Oligodendroglia</td><td>Produce myelin in the CNS<br />Affected in multiple sclerosis</td></tr><tr><td>Schwann cells</td><td>Produce myelin in the PNS<br />Affected in Guillain-Barre syndrome<br />Cell type of acoustic neuromas</td></tr><tr><td>Astrocytes</td><td>Provides physical support<br />Removes excess potassium ions<br />Help form the blood-brain barrier<br />Physical repair</td></tr><tr><td>Microglia</td><td>Specialised CNS phagocytes</td></tr><tr><td>Ependymal cells</td><td>Provide the inner lining of the ventricles</td></tr></tbody></table></div></div>\n\n\n<BR><BR><br><br>",
   "category": "2",
   "sort_order": 34,
-  "related_nids": []
+  "related_nids": [
+    "1_30",
+    "2_2075",
+    "2_2074",
+    "1_154",
+    "2_300"
+  ]
 }

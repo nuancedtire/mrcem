@@ -3,6 +3,12 @@
   "title": "Acoustic neuroma",
   "body_html": "<div>Acoustic neuromas (more correctly called vestibular schwannomas) account for approximately five percent of intracranial tumours and 90 percent of cerebellopontine angle tumours.<br /><br />Features can be predicted by the affected cranial nerves<br /><ul><li>cranial nerve VIII: hearing loss, vertigo, tinnitus</li><li>cranial nerve V: absent corneal reflex</li><li>cranial nerve VII: facial palsy</li></ul><br />Bilateral acoustic neuromas are seen in neurofibromatosis type 2<br /><br />MRI of the cerebellopontine angle is the investigation of choice</div>\n\n<div id=\"mybodylinks\"></div>\n\n<div id=\"mybodymedia\"></div>\n\n\n<div id=\"categorynum\">5</div>\n\n<div id=\"subcategorynum\">300</div>\n\n<div id=\"categoryname\">Pathology</div>\n\n<div id=\"subcategoryname\">Neurology & neurosurgery</div>\n<div id=\"mybody\">\n\n<div id=\"body_content\">\nAcoustic neuromas (more correctly called vestibular schwannomas) account for approximately five percent of intracranial tumours and 90 percent of cerebellopontine angle tumours.<br /><br />Features can be predicted by the affected cranial nerves<br /><ul><li>cranial nerve VIII: hearing loss, vertigo, tinnitus</li><li>cranial nerve V: absent corneal reflex</li><li>cranial nerve VII: facial palsy</li></ul><br />Bilateral acoustic neuromas are seen in neurofibromatosis type 2<br /><br />MRI of the cerebellopontine angle is the investigation of choice</div>\n\n\n<BR><BR><br><br></div>",
   "category": "2",
-  "sort_order": 3,
-  "related_nids": []
+  "sort_order": 4,
+  "related_nids": [
+    "1_53",
+    "2_370",
+    "2_2080",
+    "1_54",
+    "2_2155"
+  ]
 }

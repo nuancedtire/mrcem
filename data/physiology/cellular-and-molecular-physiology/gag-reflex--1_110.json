@@ -4,5 +4,11 @@
   "body_html": "<div>The pharyngeal reflex or gag reflex is a reflex contraction of pharyngeal muscles and lifting of the soft palate that is typically evoked by touching the posterior pharyngeal wall.<br /><br /><br /><div class='alert alert-warning'>The sensory limb is mediated predominantly by CN IX (glossopharyngeal nerve) the motor response by CN X (Vagus).<br /></div></div>\n\n<div id=\"mybodylinks\"></div>\n\n<div id=\"mybodymedia\"></div>\n\n\n<div id=\"categorynum\">2</div>\n\n<div id=\"subcategorynum\">1</div>\n\n<div id=\"categoryname\">Physiology</div>\n\n<div id=\"subcategoryname\">Cellular & molecular physiology</div>\n<div id=\"mybody\">\n\n<div id=\"body_content\">\nThe pharyngeal reflex or gag reflex is a reflex contraction of pharyngeal muscles and lifting of the soft palate that is typically evoked by touching the posterior pharyngeal wall.<br /><br /><br /><div class='alert alert-warning'>The sensory limb is mediated predominantly by CN IX (glossopharyngeal nerve) the motor response by CN X (Vagus).<br /></div></div>\n\n\n<BR><BR><br><br></div>",
   "category": "1",
   "sort_order": 14,
-  "related_nids": []
+  "related_nids": [
+    "1_262",
+    "1_2464",
+    "1_2630",
+    "1_2622",
+    "1_67"
+  ]
 }

@@ -4,5 +4,11 @@
   "body_html": "<div>The RCEM syllabus expects candidates to know the relative compositions of Hartmann's and saline solutions. <br /><br /><b>Hartmann's contains:</b><br /><ul><li>5 mmol/L of potassium ions</li><li>29 mmol/L of lactate ions</li><li>111 mmol/L of chloride ions</li><li>131 mmol/L of sodium ions</li></ul><br /><b>Saline solution contains:</b><br /><ul><li>154 mmol/L sodium</li><li>154 mmol/L chloride</li></ul></div>\n\n<div id=\"mybodylinks\"></div>\n\n<div id=\"mybodymedia\"></div>\n\n\n<div id=\"categorynum\">3</div>\n\n<div id=\"subcategorynum\">9326</div>\n\n<div id=\"categoryname\">Pharmacology</div>\n\n<div id=\"subcategoryname\">Cardiovascular pharmacology</div>\n<div id=\"mybody\">\n\n<div id=\"body_content\">\nThe RCEM syllabus expects candidates to know the relative compositions of Hartmann's and saline solutions. <br /><br /><b>Hartmann's contains:</b><br /><ul><li>5 mmol/L of potassium ions</li><li>29 mmol/L of lactate ions</li><li>111 mmol/L of chloride ions</li><li>131 mmol/L of sodium ions</li></ul><br /><b>Saline solution contains:</b><br /><ul><li>154 mmol/L sodium</li><li>154 mmol/L chloride</li></ul></div>\n\n\n<BR><BR><br><br></div>",
   "category": "1",
   "sort_order": 7,
-  "related_nids": []
+  "related_nids": [
+    "1_2927",
+    "1_2887",
+    "2_440",
+    "2_793",
+    "1_2930"
+  ]
 }

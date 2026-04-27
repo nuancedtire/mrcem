@@ -4,5 +4,11 @@
   "body_html": "<div>Vitamin K is a fat-soluble vitamin which acts as a cofactor in the carboxylation of clotting factors (II, VII, IX, X).</div>\n\n<div id=\"mybodylinks\"></div>\n\n<div id=\"mybodymedia\"></div>\n\n\n<div id=\"categorynum\">3</div>\n\n<div id=\"subcategorynum\">200</div>\n\n<div id=\"categoryname\">Pharmacology</div>\n\n<div id=\"subcategoryname\">Endocrine, nutrition & immunology</div>\n<div id=\"mybody\">\n\n<div id=\"body_content\">\nVitamin K is a fat-soluble vitamin which acts as a cofactor in the carboxylation of clotting factors (II, VII, IX, X).</div>\n\n\n<BR><BR><br><br></div>",
   "category": "2",
   "sort_order": 20,
-  "related_nids": []
+  "related_nids": [
+    "2_2061",
+    "2_2068",
+    "2_257",
+    "1_2772",
+    "1_313"
+  ]
 }
