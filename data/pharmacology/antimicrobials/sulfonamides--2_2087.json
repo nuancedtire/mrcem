@@ -1,6 +1,8 @@
 {
   "nid": "2_2087",
   "title": "Sulfonamides",
-  "body_html": "Sulfonamides are a class of antibiotic that work by inhibiting dihydropteroate synthetase<br /><br />Examples<br /><ul><li>co-trimoxazole</li><li>trimethoprim</li></ul><br />Adverse effects of co-trimoxazole include:<br /><ul><li>Steven-Johnson syndrome</li></ul></div>\n\n<div id=\"mybodylinks\"></div>\n\n<div id=\"mybodymedia\"></div>\n\n\n<div id=\"categorynum\">3</div>\n\n<div id=\"subcategorynum\">102</div>\n\n<div id=\"categoryname\">Pharmacology</div>\n\n<div id=\"subcategoryname\">Antimicrobials</div>\n<div id=\"mybody\">\n\n<div id=\"body_content\">\nSulfonamides are a class of antibiotic that work by inhibiting dihydropteroate synthetase<br /><br />Examples<br /><ul><li>co-trimoxazole</li><li>trimethoprim</li></ul><br />Adverse effects of co-trimoxazole include:<br /><ul><li>Steven-Johnson syndrome</li></ul></div>\n\n\n<BR><BR><br><br>",
-  "category": "2"
+  "body_html": "<div>Sulfonamides are a class of antibiotic that work by inhibiting dihydropteroate synthetase<br /><br />Examples<br /><ul><li>co-trimoxazole</li><li>trimethoprim</li></ul><br />Adverse effects of co-trimoxazole include:<br /><ul><li>Steven-Johnson syndrome</li></ul></div>\n\n<div id=\"mybodylinks\"></div>\n\n<div id=\"mybodymedia\"></div>\n\n\n<div id=\"categorynum\">3</div>\n\n<div id=\"subcategorynum\">102</div>\n\n<div id=\"categoryname\">Pharmacology</div>\n\n<div id=\"subcategoryname\">Antimicrobials</div>\n<div id=\"mybody\">\n\n<div id=\"body_content\">\nSulfonamides are a class of antibiotic that work by inhibiting dihydropteroate synthetase<br /><br />Examples<br /><ul><li>co-trimoxazole</li><li>trimethoprim</li></ul><br />Adverse effects of co-trimoxazole include:<br /><ul><li>Steven-Johnson syndrome</li></ul></div>\n\n\n<BR><BR><br><br></div>",
+  "category": "2",
+  "sort_order": 17,
+  "related_nids": []
 }

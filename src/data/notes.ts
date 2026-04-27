@@ -8,6 +8,8 @@ interface RawNote {
   title: string;
   body_html: string;
   category: string;
+  sort_order?: number;
+  related_nids?: string[];
 }
 
 export interface TocHeading {
@@ -27,6 +29,8 @@ export interface Note {
   subcategoryNum: number;
   subcategoryName: string;
   subcategorySlug: string;
+  sortOrder: number;
+  relatedNids: string[];
 }
 
 export interface Subcategory {
@@ -360,7 +364,16 @@ const _notes: Note[] = (rawNotes as RawNote[]).map(raw => {
     subcategoryNum: meta.subcategoryNum,
     subcategoryName: meta.subcategoryName,
     subcategorySlug: meta.subcategoryNum > 0 ? slugify(meta.subcategoryName) : '',
+    sortOrder: raw.sort_order || 0,
+    relatedNids: raw.related_nids || [],
   };
+});
+
+// Sort notes by category, subcategory, then sortOrder
+_notes.sort((a, b) => {
+  if (a.categoryNum !== b.categoryNum) return a.categoryNum - b.categoryNum;
+  if (a.subcategoryNum !== b.subcategoryNum) return a.subcategoryNum - b.subcategoryNum;
+  return a.sortOrder - b.sortOrder;
 });
 
 export function getAllNotes(): Note[] {

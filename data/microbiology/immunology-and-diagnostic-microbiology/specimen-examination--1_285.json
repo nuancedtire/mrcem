@@ -1,0 +1,8 @@
+{
+  "nid": "1_285",
+  "title": "Specimen examination",
+  "body_html": "<div class=\"table-responsive\"><table class = \"tlarge table table-striped table-bordered\"  data-role=\"table\" id=\"tableid1\" ><thead><tr><th>Stain</th><th>Uses</th></tr></thead><tbody><tr><td>Giemsa</td><td>Malaria<br />Leishmania<br />Trypanosoma<br />Trichomonas vaginalis<br />Chagas<br />Chlamydia</td></tr><tr><td>Ziehl-Neelsen</td><td>TB</td></tr><tr><td>Immunofluorescent staining</td><td>Influenza A<br />Influenza B<br />RSV</td></tr></tbody></table></div></div>\n\n<div id=\"mybodylinks\"></div>\n\n<div id=\"mybodymedia\"></div>\n\n\n<div id=\"categorynum\">4</div>\n\n<div id=\"subcategorynum\">200</div>\n\n<div id=\"categoryname\">Microbiology</div>\n\n<div id=\"subcategoryname\">Immunology and diagnostic microbiology</div>\n<div id=\"mybody\">\n\n<div id=\"body_content\">\n<div class=\"table-responsive\"><table class = \"tlarge table table-striped table-bordered\"  data-role=\"table\" id=\"tableid1\" ><thead><tr><th>Stain</th><th>Uses</th></tr></thead><tbody><tr><td>Giemsa</td><td>Malaria<br />Leishmania<br />Trypanosoma<br />Trichomonas vaginalis<br />Chagas<br />Chlamydia</td></tr><tr><td>Ziehl-Neelsen</td><td>TB</td></tr><tr><td>Immunofluorescent staining</td><td>Influenza A<br />Influenza B<br />RSV</td></tr></tbody></table></div></div>\n\n\n<BR><BR><br><br>",
+  "category": "1",
+  "sort_order": 5,
+  "related_nids": []
+}

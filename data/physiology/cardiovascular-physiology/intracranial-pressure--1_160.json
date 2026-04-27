@@ -2,5 +2,7 @@
   "nid": "1_160",
   "title": "Intracranial Pressure",
   "body_html": "<b>ICP Key Points</b><br /><br />Cerebral perfusion pressure is calculated by subtracting the intracranial pressure from the mean arterial pressure.<br /><br /><b>CPP = MAP - ICP</b><br /><br />Intracranial pressure is raised in:<br /><br /><ul><li>Hypercapnia</li><li>Hypoxia</li><li>Low cerebral perfusion</li><li>Accelerated hypertension</li><li>Conditions affecting CSF circulation e.g. mass lesions, obstructive hydrocephalus, venous thrombosis and oedema (which may be secondary to other causes such as infart or infection)</li></ul></div>\n\n<div id=\"mybodylinks\"></div>\n\n<div id=\"mybodymedia\"></div>\n\n\n<div id=\"categorynum\">2</div>\n\n<div id=\"subcategorynum\">2</div>\n\n<div id=\"categoryname\">Physiology</div>\n\n<div id=\"subcategoryname\">Cardiovascular physiology</div>\n<div id=\"mybody\">\n\n<div id=\"body_content\">\n<b>ICP Key Points</b><br /><br />Cerebral perfusion pressure is calculated by subtracting the intracranial pressure from the mean arterial pressure.<br /><br /><b>CPP = MAP - ICP</b><br /><br />Intracranial pressure is raised in:<br /><br /><ul><li>Hypercapnia</li><li>Hypoxia</li><li>Low cerebral perfusion</li><li>Accelerated hypertension</li><li>Conditions affecting CSF circulation e.g. mass lesions, obstructive hydrocephalus, venous thrombosis and oedema (which may be secondary to other causes such as infart or infection)</li></ul></div>\n\n\n<BR><BR><br><br>",
-  "category": "1"
+  "category": "1",
+  "sort_order": 22,
+  "related_nids": []
 }

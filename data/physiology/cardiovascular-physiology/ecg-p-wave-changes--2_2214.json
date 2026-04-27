@@ -1,6 +1,8 @@
 {
   "nid": "2_2214",
   "title": "ECG: P wave changes",
-  "body_html": "Increased P wave amplitude<br /><ul><li>cor pulmonale</li></ul></div>\n\n<div id=\"mybodylinks\"></div>\n\n<div id=\"mybodymedia\"></div>\n\n\n<div id=\"categorynum\">2</div>\n\n<div id=\"subcategorynum\">2</div>\n\n<div id=\"categoryname\">Physiology</div>\n\n<div id=\"subcategoryname\">Cardiovascular physiology</div>\n<div id=\"mybody\">\n\n<div id=\"body_content\">\nIncreased P wave amplitude<br /><ul><li>cor pulmonale</li></ul></div>\n\n\n<BR><BR><br><br>",
-  "category": "2"
+  "body_html": "<div>Increased P wave amplitude<br /><ul><li>cor pulmonale</li></ul></div>\n\n<div id=\"mybodylinks\"></div>\n\n<div id=\"mybodymedia\"></div>\n\n\n<div id=\"categorynum\">2</div>\n\n<div id=\"subcategorynum\">2</div>\n\n<div id=\"categoryname\">Physiology</div>\n\n<div id=\"subcategoryname\">Cardiovascular physiology</div>\n<div id=\"mybody\">\n\n<div id=\"body_content\">\nIncreased P wave amplitude<br /><ul><li>cor pulmonale</li></ul></div>\n\n\n<BR><BR><br><br></div>",
+  "category": "2",
+  "sort_order": 34,
+  "related_nids": []
 }
