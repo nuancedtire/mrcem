@@ -87,7 +87,11 @@ const DEFAULT_META: CategoryMeta = {
 };
 
 const CDN_ORIGIN = 'https://d20g8jnrcgqmxh.cloudfront.net';
-const CDN_RE = new RegExp(CDN_ORIGIN.replace(/\./g, '\\.'), 'g');
+const CDN_URL_RE = new RegExp(
+  CDN_ORIGIN.replace(/\./g, '\\.') + '(/[^"\'\\s>]*)',
+  'g'
+);
+const CF_IMAGES_BASE = 'https://imagedelivery.net/gceaQ8-ViunV02vSblnRWQ/mrcem-notes';
 const META_DIV_RE = /<div id="(?:categorynum|categoryname|subcategorynum|subcategoryname)">[^<]*<\/div>/g;
 
 const CLUTTER_PATTERNS = [
@@ -326,8 +330,8 @@ function processHtml(html: string): string {
     result = result.slice(0, idx) + result.slice(idx + 6);
   }
 
-  // Replace CDN URLs
-  result = result.replace(CDN_RE, '/images');
+  // Replace CDN URLs with Cloudflare Images delivery URLs
+  result = result.replace(CDN_URL_RE, `${CF_IMAGES_BASE}$1/public`);
 
   return result.trim();
 }
