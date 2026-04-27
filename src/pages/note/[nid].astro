@@ -4,7 +4,7 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
 import NoteBody from '../../components/NoteBody.astro';
 import Pagination from '../../components/Pagination.astro';
 import Toc from '../../components/Toc.astro';
-import { getAllNotes, getNoteByNid, getAdjacentNotes } from '../../data/notes';
+import { getAllNotes, getNoteByNid, getAdjacentNotes, getRelatedNotes } from '../../data/notes';
 
 export async function getStaticPaths() {
   return getAllNotes().map(note => ({ params: { nid: note.nid } }));
@@ -13,6 +13,7 @@ export async function getStaticPaths() {
 const { nid } = Astro.params;
 const note = getNoteByNid(nid)!;
 const { prev, next } = getAdjacentNotes(nid);
+const relatedNotes = getRelatedNotes(nid);
 
 const crumbs = [
   { label: note.categoryName, href: `/${note.categorySlug}/` },
@@ -54,6 +55,22 @@ const hasToc = note.headings.length > 1;
     )}
 
     <NoteBody html={note.bodyHtml} />
+
+    {relatedNotes.length > 0 && (
+      <aside class="related-notes">
+        <h2 class="related-notes-heading">See also</h2>
+        <ul class="related-notes-list">
+          {relatedNotes.map(rel => (
+            <li>
+              <a href={`/note/${rel.nid}/`} class="related-note-link">
+                <span class="related-note-title">{rel.title}</span>
+                <span class="related-note-meta">{rel.categoryName}{rel.subcategoryName ? ` · ${rel.subcategoryName}` : ''}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </aside>
+    )}
   </article>
 
   <Pagination prev={prev} next={next} />

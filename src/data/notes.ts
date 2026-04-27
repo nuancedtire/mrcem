@@ -348,22 +348,46 @@ function processHtml(html: string): string {
   return result.trim();
 }
 
+function stripSubcategoryPrefix(title: string, subcategoryName: string): string {
+  if (!subcategoryName) return title;
+  // Normalize HTML entities in subcategoryName for comparison
+  const norm = subcategoryName.replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>');
+  if (title.toLowerCase().startsWith(norm.toLowerCase())) {
+    const rest = title.slice(norm.length).trimStart();
+    if (rest.startsWith(':')) {
+      const stripped = rest.slice(1).trimStart();
+      if (stripped.length > 0) return stripped;
+    }
+  }
+  return title;
+}
+
+// Display name overrides: [categoryNum][subcategoryNum] → display name.
+// The URL slug is derived from the original name so existing URLs stay stable.
+const SUBCATEGORY_NAME_OVERRIDE: Record<number, Record<number, string>> = {
+  4: { 8423: 'Virology & Mycology' }, // Microbiology: Virology subcategory also contains fungi
+};
+
 // Process all notes once at module load time (build-time)
 const _notes: Note[] = (rawNotes as RawNote[]).map(raw => {
   const meta = extractMeta(raw.body_html);
   let bodyHtml = processHtml(raw.body_html);
   const { headings, html } = extractHeadings(bodyHtml);
+  const title = stripSubcategoryPrefix(raw.title, meta.subcategoryName);
+  const subcategorySlug = meta.subcategoryNum > 0 ? slugify(meta.subcategoryName) : '';
+  const nameOverride = SUBCATEGORY_NAME_OVERRIDE[meta.categoryNum]?.[meta.subcategoryNum];
+  const subcategoryName = nameOverride ?? meta.subcategoryName;
   return {
     nid: raw.nid,
-    title: raw.title,
+    title,
     bodyHtml: html,
     headings,
     categoryNum: meta.categoryNum,
     categoryName: meta.categoryName,
     categorySlug: slugify(meta.categoryName),
     subcategoryNum: meta.subcategoryNum,
-    subcategoryName: meta.subcategoryName,
-    subcategorySlug: meta.subcategoryNum > 0 ? slugify(meta.subcategoryName) : '',
+    subcategoryName,
+    subcategorySlug,
     sortOrder: raw.sort_order || 0,
     relatedNids: raw.related_nids || [],
   };
@@ -450,4 +474,12 @@ export function getAdjacentNotes(nid: string): { prev: Note | null; next: Note |
     prev: idx > 0 ? siblings[idx - 1] : null,
     next: idx < siblings.length - 1 ? siblings[idx + 1] : null,
   };
+}
+
+export function getRelatedNotes(nid: string): Note[] {
+  const note = _notes.find(n => n.nid === nid);
+  if (!note || note.relatedNids.length === 0) return [];
+  return note.relatedNids
+    .map(id => _notes.find(n => n.nid === id))
+    .filter((n): n is Note => n !== undefined);
 }

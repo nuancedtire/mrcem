@@ -854,6 +854,55 @@ body {
 }
 #lb-close:hover { background: rgba(255,255,255,.22); }
 
+/* ─── Related Notes ──────────────────────────────────────────────────────── */
+.related-notes {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.related-notes-heading {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 0.75rem;
+}
+.related-notes-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.related-note-link {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  padding: 0.65rem 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  text-decoration: none;
+  background: var(--surface);
+  transition: border-color 0.15s, background 0.15s;
+}
+.related-note-link:hover {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+.related-note-title {
+  font-family: 'Newsreader', serif;
+  font-size: 0.9rem;
+  color: var(--ink);
+}
+.related-note-meta {
+  font-size: 0.75rem;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
 /* ─── Pagination ─────────────────────────────────────────────────────────── */
 .pagination {
   display: grid;
