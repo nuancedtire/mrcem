@@ -412,9 +412,10 @@ export function getNoteByNid(nid: string): Note | undefined {
 // numbers would otherwise produce a clinically illogical ordering.
 // Map: categoryNum → { subcategoryNum → sort position (lower = first) }
 const SUBCATEGORY_SORT_OVERRIDE: Record<number, Record<number, number>> = {
-  3: { 9326: 1, 300: 2, 100: 3, 4059: 4, 200: 5 }, // Pharmacology: Cardiovascular → GI → Neuropsych → Antimicrobials → Endocrine
-  4: { 7650: 1, 8423: 2, 300: 3, 200: 4, 100: 5 }, // Microbiology: Bacteriology → Virology → Clinical → Immunology → Parasitology
-  6: { 1: 1, 2: 2, 3: 3, 4: 4, 5: 5 },              // EBM: Foundational → Distributions → Hypothesis Testing → Risk/Screening → Epidemiology
+  3: { 9326: 1, 300: 2, 100: 3, 4059: 4, 200: 5 },                    // Pharmacology: Cardiovascular → GI → Neuropsych → Antimicrobials → Endocrine
+  4: { 7650: 1, 8423: 2, 300: 3, 200: 4, 100: 5 },                    // Microbiology: Bacteriology → Virology → Clinical → Immunology → Parasitology
+  5: { 100: 1, 150: 2, 200: 3, 7185: 4, 500: 5, 300: 6, 400: 7 },    // Pathology: Cardiorespiratory → Renal → GI/Endocrine → Haematology → Infectious → Neurology → Rheumatology
+  6: { 1: 1, 2: 2, 3: 3, 4: 4, 5: 5 },                               // EBM: Foundational → Distributions → Hypothesis Testing → Risk/Screening → Epidemiology
 };
 
 export function getCategories(): Category[] {
