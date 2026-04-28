@@ -263,6 +263,11 @@ const path = Astro.url.pathname;
       // Run on initial load and after every Astro page transition
       document.addEventListener('astro:page-load', init);
 
+      // Suppress entry animations before swap so .note-body never starts invisible
+      document.addEventListener('astro:before-swap', () => {
+        document.documentElement.classList.add('no-animations');
+      });
+
       // Restore persisted state immediately after DOM swap (suppress transitions to avoid FOUC)
       document.addEventListener('astro:after-swap', () => {
         const html = document.documentElement;
@@ -286,6 +291,7 @@ const path = Astro.url.pathname;
         requestAnimationFrame(() => {
           requestAnimationFrame(() => {
             html.classList.remove('no-transitions');
+            html.classList.remove('no-animations');
           });
         });
       });

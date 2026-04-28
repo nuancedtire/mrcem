@@ -4,9 +4,5 @@
   "body_html": "<div>Suxamethonium is a depolarizing neuromuscular blocker with a short duration of action.  It should be avoided in patients with burns and renal failure as it cause a release of potassium.  It can cause malignant hyperthermia.</div>\n\n<div id=\"mybodylinks\"></div>\n\n<div id=\"mybodymedia\"></div>\n\n\n<div id=\"categorynum\">3</div>\n\n<div id=\"subcategorynum\">100</div>\n\n<div id=\"categoryname\">Pharmacology</div>\n\n<div id=\"subcategoryname\">Neuropsych & anaesthesia</div>\n<div id=\"mybody\">\n\n<div id=\"body_content\">\nSuxamethonium is a depolarizing neuromuscular blocker with a short duration of action.  It should be avoided in patients with burns and renal failure as it cause a release of potassium.  It can cause malignant hyperthermia.</div>\n\n\n<BR><BR><br><br></div>",
   "category": "1",
   "sort_order": 9,
-  "related_nids": [
-    "2_2080",
-    "1_204",
-    "1_33"
-  ]
+  "related_nids": []
 }

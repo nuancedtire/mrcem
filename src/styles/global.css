@@ -594,7 +594,11 @@ body {
   font-size: 1.0rem;
   line-height: 1.85;
   color: var(--ink);
-  animation: fadeUp 0.3s ease both;
+  animation: fadeUp 0.25s ease both;
+}
+
+.no-animations .note-body {
+  animation: none;
 }
 
 @keyframes fadeUp {
