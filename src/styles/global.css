@@ -694,20 +694,22 @@ body {
   border-bottom-color: var(--border-strong);
 }
 
-/* ── Image / layout tables (inside <CENTER>) ────────────────────── */
+/* ── Image / layout tables (inside <CENTER> or .text-center) ────── */
 .note-body center table,
-.note-body CENTER table {
+.note-body CENTER table,
+.note-body .text-center table {
   width: auto;
   display: inline-table;
   margin: 0;
   border: none;
 }
 
-
 .note-body center table th,
 .note-body center table td,
 .note-body CENTER table th,
-.note-body CENTER table td {
+.note-body CENTER table td,
+.note-body .text-center table th,
+.note-body .text-center table td {
   padding: 0.35rem 0.6rem;
   border: none;
   background: none;
@@ -719,11 +721,13 @@ body {
   vertical-align: middle;
 }
 .note-body center tbody tr:hover,
-.note-body CENTER tbody tr:hover {
+.note-body CENTER tbody tr:hover,
+.note-body .text-center tbody tr:hover {
   background: none;
 }
 .note-body center table img,
-.note-body CENTER table img {
+.note-body CENTER table img,
+.note-body .text-center table img {
   display: inline;
   border-radius: var(--radius-lg);
 }
@@ -776,7 +780,7 @@ body {
   border-radius: var(--radius-lg);
   display: block;
 }
-.note-body CENTER, .note-body center {
+.note-body CENTER, .note-body center, .note-body .text-center {
   display: flex;
   flex-direction: column;
   align-items: center;
