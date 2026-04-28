@@ -4,5 +4,9 @@
   "body_html": "<div>Azathioprine is metabolised to the active compound mercaptopurine, a purine analogue that inhibits purine synthesis. A thiopurine methyltransferase (TPMT) test may be needed to look for individuals prone to azathioprine toxicity.<br /><br />Adverse effects include<br /><ul><li>bone marrow depression</li><li>nausea/vomiting</li><li>pancreatitis</li></ul><br />A significant interaction may occur with allopurinol and hence lower doses of azathioprine should be used.</div>\n\n<div id=\"mybodylinks\"></div>\n\n<div id=\"mybodymedia\"></div>\n\n\n<div id=\"categorynum\">3</div>\n\n<div id=\"subcategorynum\">300</div>\n\n<div id=\"categoryname\">Pharmacology</div>\n\n<div id=\"subcategoryname\">GI & general pharmacology</div>\n<div id=\"mybody\">\n\n<div id=\"body_content\">\nAzathioprine is metabolised to the active compound mercaptopurine, a purine analogue that inhibits purine synthesis. A thiopurine methyltransferase (TPMT) test may be needed to look for individuals prone to azathioprine toxicity.<br /><br />Adverse effects include<br /><ul><li>bone marrow depression</li><li>nausea/vomiting</li><li>pancreatitis</li></ul><br />A significant interaction may occur with allopurinol and hence lower doses of azathioprine should be used.</div>\n\n\n<BR><BR><br><br></div>",
   "category": "2",
   "sort_order": 29,
-  "related_nids": []
+  "related_nids": [
+    "2_2163",
+    "2_206",
+    "2_947"
+  ]
 }

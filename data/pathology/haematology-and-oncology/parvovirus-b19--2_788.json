@@ -4,5 +4,9 @@
   "body_html": "<div>Parvovirus B19 is a DNA virus which causes a variety of clinical presentations. It was identified in the 1980's as the cause of erythema infectiosum<br /><br />Erythema infectiosum (also known as fifth disease or 'slapped-cheek syndrome')<br /><ul><li>most common presenting illness</li><li>systemic symptoms: lethargy, fever, headache</li><li>'slapped-cheek' rash spreading to proximal arms and extensor surfaces</li></ul><br />Other presentations<br /><ul><li>asymptomatic</li><li>pancytopaenia in immunosuppressed patients</li><li>aplastic crises e.g. in sickle-cell disease (parvovirus B19 suppresses erythropoiesis for about a week so aplastic anaemia is rare unless there is a chronic haemolytic anaemia)</li></ul></div>\n\n<div id=\"mybodylinks\"></div>\n\n<div id=\"mybodymedia\"></div>\n\n\n<div id=\"categorynum\">5</div>\n\n<div id=\"subcategorynum\">7185</div>\n\n<div id=\"categoryname\">Pathology</div>\n\n<div id=\"subcategoryname\">Haematology & oncology</div>\n<div id=\"mybody\">\n\n<div id=\"body_content\">\nParvovirus B19 is a DNA virus which causes a variety of clinical presentations. It was identified in the 1980's as the cause of erythema infectiosum<br /><br />Erythema infectiosum (also known as fifth disease or 'slapped-cheek syndrome')<br /><ul><li>most common presenting illness</li><li>systemic symptoms: lethargy, fever, headache</li><li>'slapped-cheek' rash spreading to proximal arms and extensor surfaces</li></ul><br />Other presentations<br /><ul><li>asymptomatic</li><li>pancytopaenia in immunosuppressed patients</li><li>aplastic crises e.g. in sickle-cell disease (parvovirus B19 suppresses erythropoiesis for about a week so aplastic anaemia is rare unless there is a chronic haemolytic anaemia)</li></ul></div>\n\n\n<BR><BR><br><br></div>",
   "category": "2",
   "sort_order": 45,
-  "related_nids": []
+  "related_nids": [
+    "2_158",
+    "2_604",
+    "2_616"
+  ]
 }

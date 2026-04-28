@@ -3,6 +3,10 @@
   "title": "Meglitinides",
   "body_html": "<div>Meglitinides (e.g. repaglinide, nateglinide)<br /><ul><li>insulin secretagogues</li><li>like sulfonylureas they bind to an ATP-dependent K<sup>+</sup>(K<sub>ATP</sub>) channel on the cell membrane of pancreatic beta cells</li><li>often used for patients with an erratic lifestyle</li><li>adverse effects include weight gain and hypoglycaemia (less so than sulfonylureas)</li></ul></div>\n\n<div id=\"mybodylinks\"></div>\n\n<div id=\"mybodymedia\"></div>\n\n\n<div id=\"categorynum\">5</div>\n\n<div id=\"subcategorynum\">200</div>\n\n<div id=\"categoryname\">Pathology</div>\n\n<div id=\"subcategoryname\">GI & endocrine pathology</div>\n<div id=\"mybody\">\n\n<div id=\"body_content\">\nMeglitinides (e.g. repaglinide, nateglinide)<br /><ul><li>insulin secretagogues</li><li>like sulfonylureas they bind to an ATP-dependent K<sup>+</sup>(K<sub>ATP</sub>) channel on the cell membrane of pancreatic beta cells</li><li>often used for patients with an erratic lifestyle</li><li>adverse effects include weight gain and hypoglycaemia (less so than sulfonylureas)</li></ul></div>\n\n\n<BR><BR><br><br></div>",
   "category": "2",
-  "sort_order": 44,
-  "related_nids": []
+  "sort_order": 45,
+  "related_nids": [
+    "2_1546",
+    "2_2038",
+    "2_183"
+  ]
 }

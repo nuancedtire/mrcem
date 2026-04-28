@@ -3,6 +3,10 @@
   "title": "Hyponatraemia",
   "body_html": "<div>Hyponatraemia may be caused by water excess or sodium depletion. Causes of pseudohyponatraemia include hyperlipidaemia (increase in serum volume) or a taking blood from a drip arm. Urinary sodium and osmolarity levels aid making a diagnosis<br /><br /><b>Urinary sodium > 20 mmol/l</b><br /><br />Sodium depletion, renal loss (patient often hypovolaemic)<br /><ul><li>diuretics</li><li>Addison's</li><li>diuretic stage of renal failure</li></ul><br />Patient often euvolaemic<br /><ul><li>SIADH (urine osmolality > 500 mmol/kg)</li><li>hypothyroidism  </li></ul><br /><br /><b>Urinary sodium < 20 mmol/l</b><br /><br />Sodium depletion, extra-renal loss<br /><ul><li>diarrhoea, vomiting, sweating</li><li>burns, adenoma of rectum</li></ul><br />Water excess (patient often hypervolaemic and oedematous)<br /><ul><li>secondary hyperaldosteronism: heart failure, cirrhosis</li><li>reduced GFR: renal failure</li><li>IV dextrose, psychogenic polydipsia</li></ul></div>\n\n<div id=\"mybodylinks\"></div>\n\n<div id=\"mybodymedia\"></div>\n\n\n<div id=\"categorynum\">5</div>\n\n<div id=\"subcategorynum\">200</div>\n\n<div id=\"categoryname\">Pathology</div>\n\n<div id=\"subcategoryname\">GI & endocrine pathology</div>\n<div id=\"mybody\">\n\n<div id=\"body_content\">\nHyponatraemia may be caused by water excess or sodium depletion. Causes of pseudohyponatraemia include hyperlipidaemia (increase in serum volume) or a taking blood from a drip arm. Urinary sodium and osmolarity levels aid making a diagnosis<br /><br /><b>Urinary sodium > 20 mmol/l</b><br /><br />Sodium depletion, renal loss (patient often hypovolaemic)<br /><ul><li>diuretics</li><li>Addison's</li><li>diuretic stage of renal failure</li></ul><br />Patient often euvolaemic<br /><ul><li>SIADH (urine osmolality > 500 mmol/kg)</li><li>hypothyroidism  </li></ul><br /><br /><b>Urinary sodium < 20 mmol/l</b><br /><br />Sodium depletion, extra-renal loss<br /><ul><li>diarrhoea, vomiting, sweating</li><li>burns, adenoma of rectum</li></ul><br />Water excess (patient often hypervolaemic and oedematous)<br /><ul><li>secondary hyperaldosteronism: heart failure, cirrhosis</li><li>reduced GFR: renal failure</li><li>IV dextrose, psychogenic polydipsia</li></ul></div>\n\n\n<BR><BR><br><br></div>",
   "category": "2",
-  "sort_order": 38,
-  "related_nids": []
+  "sort_order": 39,
+  "related_nids": [
+    "2_388",
+    "2_1118",
+    "2_1120"
+  ]
 }

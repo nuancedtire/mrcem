@@ -4,5 +4,9 @@
   "body_html": "<div>Buerger's disease (also known as thromboangiitis obliterans) is a small and medium vessel vasculitis that is strongly associated with smoking.<br /><br />Features<br /><ul><li>extremity ischaemia: intermittent claudication, ischaemic ulcers etc</li><li>superficial thrombophlebitis</li><li>Raynaud's phenomenon</li></ul></div>\n\n<div id=\"mybodylinks\"></div>\n\n<div id=\"mybodymedia\"></div>\n\n\n<div id=\"categorynum\">5</div>\n\n<div id=\"subcategorynum\">400</div>\n\n<div id=\"categoryname\">Pathology</div>\n\n<div id=\"subcategoryname\">Rheumatology, dermatology & women's health</div>\n<div id=\"mybody\">\n\n<div id=\"body_content\">\nBuerger's disease (also known as thromboangiitis obliterans) is a small and medium vessel vasculitis that is strongly associated with smoking.<br /><br />Features<br /><ul><li>extremity ischaemia: intermittent claudication, ischaemic ulcers etc</li><li>superficial thrombophlebitis</li><li>Raynaud's phenomenon</li></ul></div>\n\n\n<BR><BR><br><br></div>",
   "category": "2",
   "sort_order": 9,
-  "related_nids": []
+  "related_nids": [
+    "2_740",
+    "2_1821",
+    "2_1679"
+  ]
 }

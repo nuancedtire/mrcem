@@ -4,5 +4,9 @@
   "body_html": "<div>Cat scratch disease is generally caused by the Gram negative rod <i>Bartonella henselae</i><br /><br />Features:<br /><ul><li>fever</li><li>history of a cat scratch</li><li>regional lymphadenopathy</li><li>headache</li><li>malaise</li></ul></div>\n\n<div id=\"mybodylinks\"></div>\n\n<div id=\"mybodymedia\"></div>\n\n\n<div id=\"categorynum\">4</div>\n\n<div id=\"subcategorynum\">300</div>\n\n<div id=\"categoryname\">Microbiology</div>\n\n<div id=\"subcategoryname\">Clinical microbiology</div>\n<div id=\"mybody\">\n\n<div id=\"body_content\">\nCat scratch disease is generally caused by the Gram negative rod <i>Bartonella henselae</i><br /><br />Features:<br /><ul><li>fever</li><li>history of a cat scratch</li><li>regional lymphadenopathy</li><li>headache</li><li>malaise</li></ul></div>\n\n\n<BR><BR><br><br></div>",
   "category": "2",
   "sort_order": 13,
-  "related_nids": []
+  "related_nids": [
+    "2_1652",
+    "2_1474",
+    "2_1413"
+  ]
 }

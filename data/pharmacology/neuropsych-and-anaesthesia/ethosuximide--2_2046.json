@@ -3,6 +3,10 @@
   "title": "Ethosuximide",
   "body_html": "<div>Ethosuximide is an antiepileptic that is particularly indicated in patients with absence seizures<br /><br />Mechanism of action<br /><ul><li>blocks T-type calcium channels in thalamic neurons</li></ul></div>\n\n<div id=\"mybodylinks\"></div>\n\n<div id=\"mybodymedia\"></div>\n\n\n<div id=\"categorynum\">3</div>\n\n<div id=\"subcategorynum\">100</div>\n\n<div id=\"categoryname\">Pharmacology</div>\n\n<div id=\"subcategoryname\">Neuropsych & anaesthesia</div>\n<div id=\"mybody\">\n\n<div id=\"body_content\">\nEthosuximide is an antiepileptic that is particularly indicated in patients with absence seizures<br /><br />Mechanism of action<br /><ul><li>blocks T-type calcium channels in thalamic neurons</li></ul></div>\n\n\n<BR><BR><br><br></div>",
   "category": "2",
-  "sort_order": 18,
-  "related_nids": []
+  "sort_order": 20,
+  "related_nids": [
+    "2_2049",
+    "2_1685",
+    "2_420"
+  ]
 }

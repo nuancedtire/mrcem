@@ -3,6 +3,8 @@
   "title": "Metronidazole",
   "body_html": "<div>Metronidazole is effective against protozoa and anaerobic bacteria.  It causes a disulfram-like reaction when taken with alcohol.  It can be adminstered rectally and can be used as part of triple therapy for H pylori infection.</div>\n\n<div id=\"mybodylinks\"></div>\n\n<div id=\"mybodymedia\"></div>\n\n\n<div id=\"categorynum\">3</div>\n\n<div id=\"subcategorynum\">4059</div>\n\n<div id=\"categoryname\">Pharmacology</div>\n\n<div id=\"subcategoryname\">Antimicrobials</div>\n<div id=\"mybody\">\n\n<div id=\"body_content\">\nMetronidazole is effective against protozoa and anaerobic bacteria.  It causes a disulfram-like reaction when taken with alcohol.  It can be adminstered rectally and can be used as part of triple therapy for H pylori infection.</div>\n\n\n<BR><BR><br><br><hr style=\"margin: 20px 0; border: none; border-top: 1px solid #e5e7eb;\"><h2>Additional Content</h2>Metronidazole is a type of antibiotic that works by forming reactive cytotoxic metabolites inside the bacteria.<br /><br />Adverse effects<br /><ul><li>disulfiram-like reaction with alcohol</li></ul></div>\n\n<div id=\"mybodylinks\"></div>\n\n<div id=\"mybodymedia\"></div>\n\n\n\n\n\n\n\n\n\n<div id=\"mybody\">\n\n<div id=\"body_content\">\nMetronidazole is a type of antibiotic that works by forming reactive cytotoxic metabolites inside the bacteria.<br /><br />Adverse effects<br /><ul><li>disulfiram-like reaction with alcohol</li></ul></div>\n\n\n<BR><BR><br><br></div></div>",
   "category": "1",
-  "related_nids": [],
+  "related_nids": [
+    "2_1473"
+  ],
   "sort_order": 5
 }

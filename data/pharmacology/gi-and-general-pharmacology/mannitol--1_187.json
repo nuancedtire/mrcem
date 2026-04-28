@@ -4,5 +4,11 @@
   "body_html": "<div>Mannitol is an osmotic diuretic used in acute cerebral oedema.  It should be avoided in congestive cardiac failure as it can cause fluid retention.  It promotes the excretion of aspirin and barbiturates in overdose.</div>\n\n<div id=\"mybodylinks\"></div>\n\n<div id=\"mybodymedia\"></div>\n\n\n<div id=\"categorynum\">3</div>\n\n<div id=\"subcategorynum\">300</div>\n\n<div id=\"categoryname\">Pharmacology</div>\n\n<div id=\"subcategoryname\">GI & general pharmacology</div>\n<div id=\"mybody\">\n\n<div id=\"body_content\">\nMannitol is an osmotic diuretic used in acute cerebral oedema.  It should be avoided in congestive cardiac failure as it can cause fluid retention.  It promotes the excretion of aspirin and barbiturates in overdose.</div>\n\n\n<BR><BR><br><br></div>",
   "category": "1",
   "sort_order": 15,
-  "related_nids": []
+  "related_nids": [
+    "2_525",
+    "1_96",
+    "2_406",
+    "1_160",
+    "1_159"
+  ]
 }
